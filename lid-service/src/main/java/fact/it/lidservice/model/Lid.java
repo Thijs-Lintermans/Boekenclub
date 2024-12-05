@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 @Document(value = "lid")
 @AllArgsConstructor
@@ -18,4 +18,6 @@ public class Lid {
     private String voornaam;
     private String achternaam;
     private String email;
+    private List<String> besprekingIds; // Verwijzingen naar besprekingen
+    private List<String> recensieIds;
 }
