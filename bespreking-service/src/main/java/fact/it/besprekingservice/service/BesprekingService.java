@@ -1,84 +1,78 @@
-//package fact.it.besprekingservice.service;
-//
-//import fact.it.besprekingservice.dto.BesprekingRequest;
-//import fact.it.besprekingservice.dto.BesprekingResponse;
-//import fact.it.besprekingservice.model.Bespreking;
-//import fact.it.besprekingservice.repository.BesprekingRepository;
-//import jakarta.transaction.Transactional;
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.stereotype.Service;
-//
-//import java.util.List;
-//
-//@Service
-//@RequiredArgsConstructor
-//@Transactional
-//public class BesprekingService {
-//
-//    private final BesprekingRepository besprekingRepository;
-//    // Create Bespreking
-//    public boolean createBespreking(BesprekingRequest besprekingRequest){
-//        Bespreking bespreking = Bespreking.builder()
-//                .titelBespreking(besprekingRequest.getTitelBespreking())
-//                .datum(besprekingRequest.getDatum())
-//                .locatie(besprekingRequest.getLocatie())
-//                .omschrijving(besprekingRequest.getOmschrijving())
-//                .build();
-//        besprekingRepository.save(bespreking);
-//        return true;
-//    }
-//
-//    public List<BoekResponse> getAllBoeken(){
-//        List<Boek> boeken = boekRepository.findAll();
-//
-//        return boeken.stream().map(this::mapToBoekResponse).toList();
-//    }
-//
-//    public List<BoekResponse> getAllBoekenByTitel(List<String> titel) {
-//        List<Boek> boeken = boekRepository.findByTitel(titel);
-//
-//        return boeken.stream().map(this::mapToBoekResponse).toList();
-//    }
-//
-//    public void updateBoek(String id, BoekRequest boekRequest) {
-//
-//        Boek existingBoek = boekRepository.findById(id)
-//                .orElseThrow(() -> new IllegalArgumentException("Boek with ID " + id + " not found"));
-//
-//
-//        existingBoek.setTitel(boekRequest.getTitel());
-//        existingBoek.setAuteur(boekRequest.getAuteur());
-//        existingBoek.setGenre(boekRequest.getGenre());
-//        existingBoek.setPublicatieDatum(boekRequest.getPublicatieDatum());
-//        existingBoek.setAantalPaginas(boekRequest.getAantalPaginas());
-//
-//        boekRepository.save(existingBoek);
-//    }
-//
-//    public BoekResponse getBoekById(String id) {
-//        Boek boek = boekRepository.findById(id)
-//                .orElseThrow(() -> new IllegalArgumentException("Boek with ID " + id + " not found"));
-//
-//        return mapToBoekResponse(boek);
-//    }
-//
-//    public void deleteBoek(String id) {
-//        if (boekRepository.existsById(id)) {
-//            boekRepository.deleteById(id);
-//        } else {
-//            throw new IllegalArgumentException("Boek with ID " + id + " not found");
-//        }
-//    }
-//
-//
-//    private BoekResponse mapToBoekResponse(Boek boek){
-//        return BoekResponse.builder()
-//                .id(boek.getId())
-//                .titel(boek.getTitel())
-//                .auteur(boek.getAuteur())
-//                .genre(boek.getGenre())
-//                .publicatieDatum(boek.getPublicatieDatum())
-//                .aantalPaginas(boek.getAantalPaginas())
-//                .build();
-//    }
-//}
+package fact.it.besprekingservice.service;
+
+import fact.it.besprekingservice.dto.BesprekingResponse;
+import fact.it.besprekingservice.model.Bespreking;
+import fact.it.besprekingservice.repository.BesprekingRepository;
+import jdk.jfr.Category;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class BesprekingService {
+
+    private final BesprekingRepository besprekingRepository;
+
+    @Transactional(readOnly = true)
+    public List<BesprekingResponse> getAllBesprekingen() {
+        return besprekingRepository.findAll().stream()
+                .map(bespreking -> BesprekingResponse.builder()
+                        .id(bespreking.getId())
+                        .titelBespreking(bespreking.getTitelBespreking())
+                        .datum(bespreking.getDatum())
+                        .locatie(bespreking.getLocatie())
+                        .omschrijving(bespreking.getOmschrijving())
+                        .build())
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public BesprekingResponse findById(Long id) {
+        Bespreking bespreking = besprekingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Bespreking met id " + id + " niet gevonden"));
+        return BesprekingResponse.builder()
+                .id(bespreking.getId())
+                .titelBespreking(bespreking.getTitelBespreking())
+                .datum(bespreking.getDatum())
+                .locatie(bespreking.getLocatie())
+                .omschrijving(bespreking.getOmschrijving())
+                .build();
+    }
+
+    @Transactional
+    public BesprekingResponse addBespreking(Bespreking bespreking) {
+        Bespreking savedBespreking = besprekingRepository.save(bespreking);
+        return BesprekingResponse.builder()
+                .id(savedBespreking.getId())
+                .titelBespreking(savedBespreking.getTitelBespreking())
+                .datum(savedBespreking.getDatum())
+                .locatie(savedBespreking.getLocatie())
+                .omschrijving(savedBespreking.getOmschrijving())
+                .build();
+    }
+
+    @Transactional
+    public BesprekingResponse updateBespreking(Long id, Bespreking bespreking) {
+        Bespreking besprekingToUpdate = besprekingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Bespreking met id " + id + " niet gevonden"));
+        besprekingToUpdate.setTitelBespreking(bespreking.getTitelBespreking());
+        besprekingToUpdate.setDatum(bespreking.getDatum());
+        besprekingToUpdate.setLocatie(bespreking.getLocatie());
+        besprekingToUpdate.setOmschrijving(bespreking.getOmschrijving());
+        Bespreking savedBespreking = besprekingRepository.save(besprekingToUpdate);
+        return BesprekingResponse.builder()
+                .id(savedBespreking.getId())
+                .titelBespreking(savedBespreking.getTitelBespreking())
+                .datum(savedBespreking.getDatum())
+                .locatie(savedBespreking.getLocatie())
+                .omschrijving(savedBespreking.getOmschrijving())
+                .build();
+    }
+    @Transactional
+    public void deleteBespreking(Long id) {
+       Bespreking bestaandeBespreking = besprekingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Bespreking met id " + id + " niet gevonden"));
+
+       besprekingRepository.delete(bestaandeBespreking);
+    }
+}

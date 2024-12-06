@@ -17,9 +17,10 @@ public class Bespreking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String titelBespreking;
+    private String titelRecensie;
+    private String description;
     private String datum;
-    private String locatie;
-    private String omschrijving;
+    private Lid lidId;
     private Boek boekId;
+
 }
