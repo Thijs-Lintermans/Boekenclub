@@ -5,16 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Builder;
 
-
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BesprekingRequest {
+@Builder
+public class BesprekingReSponse {
+    private Long id;
     private String titelBespreking;
+    private String description;
     private String datum;
-    private String locatie;
-    private String omschrijving;
-    private Boek boekId;
-
+    private Long lidId;
+    private Long boekId;
 }

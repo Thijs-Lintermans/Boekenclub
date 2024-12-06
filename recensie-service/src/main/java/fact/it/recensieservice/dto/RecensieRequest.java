@@ -10,11 +10,10 @@ import lombok.Builder;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BesprekingRequest {
-    private String titelBespreking;
+public class RecensieRequest {
+    private String titelRecensie;
+    private String description;
     private String datum;
-    private String locatie;
-    private String omschrijving;
-    private Boek boekId;
-
+    private Long lidId;
+    private Long boekId;
 }
