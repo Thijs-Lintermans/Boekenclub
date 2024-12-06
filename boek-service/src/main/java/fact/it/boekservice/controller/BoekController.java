@@ -16,6 +16,7 @@ public class BoekController {
     private final BoekService boekService;
 
     @PostMapping
+    @ResponseStatus(HttpStatus.OK)
     public void createBoek
             (@RequestBody BoekRequest boekRequest) {
         boekService.createBoek(boekRequest);
