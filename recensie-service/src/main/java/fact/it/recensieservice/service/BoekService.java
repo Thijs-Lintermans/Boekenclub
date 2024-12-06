@@ -17,15 +17,11 @@ public class BoekService {
     @Value("${boekservice.baseurl}")
     private String boekServiceBaseUrl;
 
-    // Constructor with WebClient.Builder to set base URL dynamically from properties
-    public BoekService(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl(boekServiceBaseUrl).build();
-    }
+    // This constructor is no longer needed because @RequiredArgsConstructor generates it automatically
 
-    // Use BoekResponse to map the API response
     public BoekResponse getBoekById(Long boekId) {
         return this.webClient.get()
-                .uri("/{id}", boekId)
+                .uri(boekServiceBaseUrl + "/{id}", boekId) // Use base URL injected via @Value
                 .retrieve()
                 .bodyToMono(BoekResponse.class)
                 .block();
