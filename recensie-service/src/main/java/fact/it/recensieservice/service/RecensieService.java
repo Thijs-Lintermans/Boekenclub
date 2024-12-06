@@ -1,81 +1,51 @@
 package fact.it.recensieservice.service;
 
+import fact.it.recensieservice.dto.BoekResponse;
+import fact.it.recensieservice.dto.LidResponse;
 import fact.it.recensieservice.dto.RecensieResponse;
 import fact.it.recensieservice.model.Recensie;
 import fact.it.recensieservice.repository.RecensieRepository;
-import jdk.jfr.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class RecensieService {
-    private final RecensieRepository recensieRepository;
 
-    @Transactional(readOnly = true)
-    public List<RecensieResponse> getAllRecensies() {
-       return recensieRepository.findAll().stream()
-                .map(recensie -> RecensieResponse.builder()
-                        .id(recensie.getId())
-                        .titelRecensie(recensie.getTitelRecensie())
-                        .description(recensie.getDescription())
-                        .datum(recensie.getDatum())
-                        .lidId(recensie.getLidId())
-                        .boekId(recensie.getBoekId())
-                        .build())
-                .collect(Collectors.toList());
-    }
-    @Transactional(readOnly = true)
-    public RecensieResponse findById(Long id) {
-        Recensie recensie = recensieRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Recensie met id " + id + " niet gevonden"));
+    private final RecensieRepository recensieRepository;
+    private final WebClient webClient; // Use WebClient instead of RestTemplate
+
+    public RecensieResponse getRecensieByLidId(Long id) {
+        Recensie recensie = recensieRepository.findByLidId(id)
+                .orElseThrow(() -> new IllegalArgumentException("Recensie not found"));
+
+        // Fetch Boek data using WebClient
+        BoekResponse boek = webClient.get()
+                .uri("http://boekservice/api/boeken/{id}", recensie.getBoekId())
+                .retrieve()
+                .bodyToMono(BoekResponse.class)
+                .block();
+
+        // Fetch Lid data using WebClient
+        LidResponse lid = webClient.get()
+                .uri("http://lidservice/api/leden/{id}", recensie.getLidId())
+                .retrieve()
+                .bodyToMono(LidResponse.class)
+                .block();
+
+        // Build RecensieResponse
         return RecensieResponse.builder()
                 .id(recensie.getId())
                 .titelRecensie(recensie.getTitelRecensie())
                 .description(recensie.getDescription())
-                .datum(recensie.getDatum())
-                .lidId(recensie.getLidId())
-                .boekId(recensie.getBoekId())
+                .datumTijd(recensie.getDatumTijd())
+                .boek(boek) // Embed BoekResponse
+                .lid(lid)   // Embed LidResponse
                 .build();
-    }
-    @Transactional
-    public RecensieResponse addRecensie(Recensie recensie) {
-        Recensie createdRecensie = recensieRepository.save(recensie);
-        return RecensieResponse.builder()
-                .id(createdRecensie.getId())
-                .titelRecensie(createdRecensie.getTitelRecensie())
-                .description(createdRecensie.getDescription())
-                .datum(createdRecensie.getDatum())
-                .lidId(createdRecensie.getLidId())
-                .boekId(createdRecensie.getBoekId())
-                .build();
-    }
-    @Transactional
-    public RecensieResponse updateRecensie(Long id, Recensie updatedRecensie) {
-        Recensie recensie = recensieRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Recensie met id " + id + " niet gevonden"));
-        recensie.setTitelRecensie(updatedRecensie.getTitelRecensie());
-        recensie.setDescription(updatedRecensie.getDescription());
-        recensie.setDatum(updatedRecensie.getDatum());
-        recensie.setLidId(updatedRecensie.getLidId());
-        recensie.setBoekId(updatedRecensie.getBoekId());
-        Recensie updatedRecensie = recensieRepository.save(recensie);
-        return RecensieResponse.builder()
-                .id(updatedRecensie.getId())
-                .titelRecensie(updatedRecensie.getTitelRecensie())
-                .description(updatedRecensie.getDescription())
-                .datum(updatedRecensie.getDatum())
-                .lidId(updatedRecensie.getLidId())
-                .boekId(updatedRecensie.getBoekId())
-                .build();
-    }
-    @Transactional
-    public void deleteRecensie(Long id) {
-        Recensie recensie = recensieRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Recensie met id " + id + " niet gevonden"));
-        recensieRepository.delete(recensie);
     }
 }
+

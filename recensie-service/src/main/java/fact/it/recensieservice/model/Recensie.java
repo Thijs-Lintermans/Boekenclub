@@ -1,26 +1,27 @@
-package fact.it.besprekingservice.model;
+package fact.it.recensieservice.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.FilterJoinTable;
+
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "besprekingen")
+@Table(name = "recensies")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-
-public class Bespreking {
+@AllArgsConstructor
+public class Recensie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String titelRecensie;
     private String description;
-    private String datum;
-    private Lid lidId;
-    private Boek boekId;
-
+    private LocalDateTime datumTijd;
+    private Long lidId;
+    private Long boekId;
 }

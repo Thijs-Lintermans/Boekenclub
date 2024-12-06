@@ -1,19 +1,15 @@
-package fact.it.lidservice.model;
+package fact.it.recensieservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
-
-@Document(value = "lid")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
-public class Lid {
+public class LidResponse {
     private String id;
     private String voornaam;
     private String achternaam;

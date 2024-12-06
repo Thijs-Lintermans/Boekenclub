@@ -8,9 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import javax.accessibility.AccessibleIcon;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
 public interface BesprekingRepository extends JpaRepository<Bespreking, Long> {
-    List<Bespreking> findById(Long id);    
+    Optional<Bespreking> findById(Long id);
 }
