@@ -17,10 +17,6 @@ public class LidService {
     @Value("${lidservice.baseurl}")
     private String lidServiceBaseUrl;
 
-    // Constructor with WebClient.Builder to set base URL dynamically from properties
-    public LidService(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl(lidServiceBaseUrl).build();
-    }
 
     // Fetch Lid data using WebClient and return LidResponse
     public LidResponse getLidById(Long lidId) {
