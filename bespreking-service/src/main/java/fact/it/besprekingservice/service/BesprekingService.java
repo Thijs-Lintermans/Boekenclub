@@ -1,6 +1,7 @@
 package fact.it.besprekingservice.service;
 
 import fact.it.besprekingservice.dto.BesprekingResponse;
+import fact.it.besprekingservice.dto.BesprekingRequest;
 import fact.it.besprekingservice.model.Bespreking;
 import fact.it.besprekingservice.repository.BesprekingRepository;
 import jdk.jfr.Category;
@@ -9,29 +10,61 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class BesprekingService {
 
     private final BesprekingRepository besprekingRepository;
 
     @Transactional(readOnly = true)
     public List<BesprekingResponse> getAllBesprekingen() {
-        return besprekingRepository.findAll().stream()
-                .map(bespreking -> BesprekingResponse.builder()
-                        .id(bespreking.getId())
-                        .titelBespreking(bespreking.getTitelBespreking())
-                        .datum(bespreking.getDatum())
-                        .locatie(bespreking.getLocatie())
-                        .omschrijving(bespreking.getOmschrijving())
-                        .build())
+        List<Bespreking> besprekingen = besprekingRepository.findAll();
+        return besprekingen.stream()
+                .map(this::mapToBesprekingResponse)
                 .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
-    public BesprekingResponse findById(Long id) {
-        Bespreking bespreking = besprekingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Bespreking met id " + id + " niet gevonden"));
+    public BesprekingResponse getBesprekingById(Long id) {
+        Bespreking bespreking = besprekingRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Bespreking met id " + id + " niet gevonden"));
+        return mapToBesprekingResponse(bespreking);
+    }
+
+    public boolean createBespreking(BesprekingRequest besprekingRequest) {
+        Bespreking bespreking = new Bespreking();
+        bespreking.setTitelBespreking(besprekingRequest.getTitelBespreking());
+        bespreking.setDatum(besprekingRequest.getDatum());
+        bespreking.setLocatie(besprekingRequest.getLocatie());
+        bespreking.setOmschrijving(besprekingRequest.getOmschrijving());
+        besprekingRepository.save(bespreking);
+        return true;
+    }
+
+    public void updateBespreking(Long id, BesprekingRequest besprekingRequest) {
+        Bespreking bestaandeBespreking = besprekingRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Bespreking met id " + id + " niet gevonden"));
+
+        bestaandeBespreking.setTitelBespreking(besprekingRequest.getTitelBespreking());
+        bestaandeBespreking.setDatum(besprekingRequest.getDatum());
+        bestaandeBespreking.setLocatie(besprekingRequest.getLocatie());
+        bestaandeBespreking.setOmschrijving(besprekingRequest.getOmschrijving());
+
+        besprekingRepository.save(bestaandeBespreking);
+    }
+
+    @Transactional
+    public void deleteBespreking(Long id) {
+        if (!besprekingRepository.existsById(id)) {
+            throw new IllegalArgumentException("Bespreking met id " + id + " niet gevonden");
+        }
+        besprekingRepository.deleteById(id);
+    }
+
+    private BesprekingResponse mapToBesprekingResponse(Bespreking bespreking) {
         return BesprekingResponse.builder()
                 .id(bespreking.getId())
                 .titelBespreking(bespreking.getTitelBespreking())
@@ -39,40 +72,5 @@ public class BesprekingService {
                 .locatie(bespreking.getLocatie())
                 .omschrijving(bespreking.getOmschrijving())
                 .build();
-    }
-
-    @Transactional
-    public BesprekingResponse addBespreking(Bespreking bespreking) {
-        Bespreking savedBespreking = besprekingRepository.save(bespreking);
-        return BesprekingResponse.builder()
-                .id(savedBespreking.getId())
-                .titelBespreking(savedBespreking.getTitelBespreking())
-                .datum(savedBespreking.getDatum())
-                .locatie(savedBespreking.getLocatie())
-                .omschrijving(savedBespreking.getOmschrijving())
-                .build();
-    }
-
-    @Transactional
-    public BesprekingResponse updateBespreking(Long id, Bespreking bespreking) {
-        Bespreking besprekingToUpdate = besprekingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Bespreking met id " + id + " niet gevonden"));
-        besprekingToUpdate.setTitelBespreking(bespreking.getTitelBespreking());
-        besprekingToUpdate.setDatum(bespreking.getDatum());
-        besprekingToUpdate.setLocatie(bespreking.getLocatie());
-        besprekingToUpdate.setOmschrijving(bespreking.getOmschrijving());
-        Bespreking savedBespreking = besprekingRepository.save(besprekingToUpdate);
-        return BesprekingResponse.builder()
-                .id(savedBespreking.getId())
-                .titelBespreking(savedBespreking.getTitelBespreking())
-                .datum(savedBespreking.getDatum())
-                .locatie(savedBespreking.getLocatie())
-                .omschrijving(savedBespreking.getOmschrijving())
-                .build();
-    }
-    @Transactional
-    public void deleteBespreking(Long id) {
-       Bespreking bestaandeBespreking = besprekingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Bespreking met id " + id + " niet gevonden"));
-
-       besprekingRepository.delete(bestaandeBespreking);
     }
 }

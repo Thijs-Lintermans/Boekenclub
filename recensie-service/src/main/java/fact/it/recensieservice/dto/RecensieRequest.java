@@ -1,9 +1,11 @@
-package fact.it.besprekingservice.dto;
+package fact.it.recensieservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Builder;
+
+import java.time.LocalDateTime;
 
 
 @Data
@@ -13,7 +15,7 @@ import lombok.Builder;
 public class RecensieRequest {
     private String titelRecensie;
     private String description;
-    private String datum;
-    private Long lidId;
-    private Long boekId;
+    private LocalDateTime datumTijd;
+    private BoekResponse boek; // Embed BoekResponse
+    private LidResponse lid;   // Embed LidResponse
 }

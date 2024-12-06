@@ -10,43 +10,40 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/besprekingen")
+@RequestMapping("/api/bespreking")
 @RequiredArgsConstructor
 public class BesprekingController {
 
-   private final BesprekingService besprekingService;
+    private final BesprekingService besprekingService;
 
-   @GetMapping()
-   public ResponeEntity<List<BesprekingResponse>> getAllBesprekingen() {
-      List<BesprekingResponse> besprekingen = besprekingService.getAllBesprekingen();
-      return ResponeEntity.ok(besprekingen);
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<BesprekingResponse> getAllBesprekingen() {
+        return besprekingService.getAllBesprekingen();
     }
 
-  @GetMapping("/{id}")
-   public ResponeEntity<List<BesprekingResponse>> findById(@PathVariable Long id) {
-      BesprekingResponse bespreking = besprekingService.findById(id);
-      return ResponeEntity.ok(bespreking);
-   }
-
-   @PostMapping
-   public ResponeEntity<BesprekingResponse> addBespreking(@RequestBody Bespreking bespreking){
-    BesprekingResponse besprekingResponse = besprekingService.addBespreking(bespreking);
-    return ResponeEntity.status(HttpStatus.CREATED).body(besprekingResponse);
-   }
-
-   @PutMapping("/{id}")
-   public ResponeEntity<BesprekingResponse> updateBespreking(@PathVariable Long id, @RequestBody Bespreking bespreking){
-    BesprekingResponse besprekingResponse = besprekingService.updateBespreking(id, bespreking);
-    return ResponeEntity.ok(besprekingResponse);
-   }
-
-   @DeleteMapping("/{id}")
-    public ResponeEntity<Void> deleteBespreking(@PathVariable Long id){
-     besprekingService.deleteBespreking(id);
-     return ResponeEntity.status(HttpStatus.NO_CONTENT).build();
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public BesprekingResponse getBesprekingById(@PathVariable Long id) {
+        return besprekingService.getBesprekingById(id);
     }
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public String createBespreking(@RequestBody BesprekingRequest besprekingRequest) {
+        boolean result = besprekingService.createBespreking(besprekingRequest);
+        return result ? "Bespreking succesvol aangemaakt" : "Bespreking niet succesvol aangemaakt";
+    }
 
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateBespreking(@PathVariable Long id, @RequestBody BesprekingRequest besprekingRequest) {
+        besprekingService.updateBespreking(id, besprekingRequest);
+    }
 
-
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteBespreking(@PathVariable Long id) {
+        besprekingService.deleteBespreking(id);
+    }
 }

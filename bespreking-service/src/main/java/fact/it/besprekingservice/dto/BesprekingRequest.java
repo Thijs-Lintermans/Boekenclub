@@ -15,6 +15,4 @@ public class BesprekingRequest {
     private String datum;
     private String locatie;
     private String omschrijving;
-    private Boek boekId;
-
 }

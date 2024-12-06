@@ -15,6 +15,4 @@ public class BesprekingResponse {
     private String datum;
     private String locatie;
     private String omschrijving;
-    private Boek boekId;
-
 }
