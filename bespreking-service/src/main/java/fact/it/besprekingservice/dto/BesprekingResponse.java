@@ -6,9 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Builder;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class BesprekingResponse {
     private Long id;
     private String titelBespreking;
