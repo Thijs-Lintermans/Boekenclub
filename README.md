@@ -35,7 +35,7 @@ Het project bestaat uit de volgende services:
 ## 🛠️ Technologieën
 
 - **Backend**: Java Spring Boot
-- **Database**: MySQL
+- **Database**: MySQL, MongoDB
 - **Architectuur**: Microservices
 - **Tools**: Maven, Lombok, Postman (voor testen van APIs)
 
