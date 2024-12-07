@@ -44,5 +44,3 @@ Het project bestaat uit de volgende services:
 Dit project biedt een schaalbare oplossing voor een boekenclub waarin leden actief kunnen deelnemen aan besprekingen en hun mening over boeken kunnen delen via recensies. De modulaire opzet zorgt ervoor dat elke functionaliteit onafhankelijk uitbreidbaar en onderhoudbaar is.
 
 ---
-
-🌟 Veel lees- en schrijfplezier gewenst!
