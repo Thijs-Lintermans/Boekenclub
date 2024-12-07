@@ -4,7 +4,6 @@ import fact.it.besprekingservice.dto.BesprekingResponse;
 import fact.it.besprekingservice.dto.BesprekingRequest;
 import fact.it.besprekingservice.model.Bespreking;
 import fact.it.besprekingservice.repository.BesprekingRepository;
-import jdk.jfr.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +33,7 @@ public class BesprekingService {
         return mapToBesprekingResponse(bespreking);
     }
 
+    @Transactional
     public boolean createBespreking(BesprekingRequest besprekingRequest) {
         Bespreking bespreking = new Bespreking();
         bespreking.setTitelBespreking(besprekingRequest.getTitelBespreking());
@@ -63,6 +63,7 @@ public class BesprekingService {
         }
         besprekingRepository.deleteById(id);
     }
+
 
     private BesprekingResponse mapToBesprekingResponse(Bespreking bespreking) {
         return BesprekingResponse.builder()
