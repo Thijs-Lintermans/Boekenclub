@@ -13,8 +13,11 @@ public class LidService {
 
     private final WebClient webClient;
 
-    @Value("${lidservice.baseurl}")
-    private String lidServiceBaseUrl;
+/*    @Value("${lidservice.baseurl}")
+    private String lidServiceBaseUrl;*/
+
+    private static final String lidServiceBaseUrl = "http://localhost:8080/api/lid";
+
 
     // Inject WebClient.Builder
     public LidService(Builder webClientBuilder) {
@@ -22,7 +25,7 @@ public class LidService {
     }
 
     // Fetch Lid data using WebClient and return LidResponse
-    public LidResponse getLidById(Long lidId) {
+    public LidResponse getLidById(String lidId) {
         return this.webClient.get()
                 .uri("/{id}", lidId) // baseUrl is al ingesteld in de builder
                 .retrieve()

@@ -8,19 +8,27 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/recensie")
+@RequestMapping("/api/recensies")
 public class RecensieController {
 
     private final RecensieService recensieService;
 
-    // Constructor injection
     public RecensieController(RecensieService recensieService) {
         this.recensieService = recensieService;
     }
 
-    @GetMapping("/{id}")
+    // Endpoint om recensies voor een specifiek lid op te halen
+    @GetMapping("/{lidId}")
     @ResponseStatus(HttpStatus.OK)
-    public RecensieResponse getRecensie(@PathVariable("id") Long lidId) {
-        return recensieService.getRecensieByLidId(lidId);
+    public List<RecensieResponse> getRecensiesByLidId(@PathVariable String lidId) {
+        return recensieService.getRecensiesByLidId(lidId);
+    }
+
+    // Endpoint om alle recensies op te halen
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<RecensieResponse> getAllRecensies() {
+        return recensieService.getAllRecensies();
     }
 }
+
