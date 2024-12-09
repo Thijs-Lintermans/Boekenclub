@@ -4,6 +4,7 @@ import fact.it.besprekingservice.dto.BesprekingResponse;
 import fact.it.besprekingservice.dto.BesprekingRequest;
 import fact.it.besprekingservice.model.Bespreking;
 import fact.it.besprekingservice.repository.BesprekingRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,15 +12,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 @Transactional
 public class BesprekingService {
 
     private final BesprekingRepository besprekingRepository;
-
-    // Constructor to initialize besprekingRepository
-    public BesprekingService(BesprekingRepository besprekingRepository) {
-        this.besprekingRepository = besprekingRepository;
-    }
 
     @Transactional(readOnly = true)
     public List<BesprekingResponse> getAllBesprekingen() {
@@ -67,13 +64,14 @@ public class BesprekingService {
         besprekingRepository.deleteById(id);
     }
 
+
     private BesprekingResponse mapToBesprekingResponse(Bespreking bespreking) {
-        return new BesprekingResponse(
-                bespreking.getId(),
-                bespreking.getTitelBespreking(),
-                bespreking.getDatum(),
-                bespreking.getLocatie(),
-                bespreking.getOmschrijving()
-        );
+        return BesprekingResponse.builder()
+                .id(bespreking.getId())
+                .titelBespreking(bespreking.getTitelBespreking())
+                .datum(bespreking.getDatum())
+                .locatie(bespreking.getLocatie())
+                .omschrijving(bespreking.getOmschrijving())
+                .build();
     }
 }
