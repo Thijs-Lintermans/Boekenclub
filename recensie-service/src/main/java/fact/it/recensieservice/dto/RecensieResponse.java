@@ -69,4 +69,29 @@ public class RecensieResponse {
     public static Builder builder() {
         return new Builder();
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitelRecensie() {
+        return titelRecensie;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public LocalDateTime getDatumTijd() {
+        return datumTijd;
+    }
+
+    public BoekResponse getBoek() {
+        return boek;
+    }
+
+    public LidResponse getLid() {
+        return lid;
+    }
+
 }

@@ -11,6 +11,6 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public interface RecensieRepository extends JpaRepository<Recensie, Long> {
-    Optional<Recensie> findByLidId(Long lidId);
+public interface RecensieRepository extends JpaRepository<Recensie, String> {
+    List<Recensie> findByLidId(String lidId);
 }

@@ -12,16 +12,15 @@ public class Recensie {
     private String titelRecensie;
     private String description;
     private LocalDateTime datumTijd;
-    private Long lidId;
-    private Long boekId;
+    private String lidId;
+    private String boekId;
 
     // No-argument constructor
     public Recensie() {
     }
 
     // All-arguments constructor
-    public Recensie(long id, String titelRecensie, String description, LocalDateTime datumTijd, Long lidId, Long boekId) {
-        this.id = id;
+    public Recensie(String titelRecensie, String description, LocalDateTime datumTijd, String lidId, String boekId) {
         this.titelRecensie = titelRecensie;
         this.description = description;
         this.datumTijd = datumTijd;
@@ -62,19 +61,19 @@ public class Recensie {
         this.datumTijd = datumTijd;
     }
 
-    public Long getLidId() {
+    public String getLidId() {
         return lidId;
     }
 
-    public void setLidId(Long lidId) {
+    public void setLidId(String lidId) {
         this.lidId = lidId;
     }
 
-    public Long getBoekId() {
+    public String getBoekId() {
         return boekId;
     }
 
-    public void setBoekId(Long boekId) {
+    public void setBoekId(String boekId) {
         this.boekId = boekId;
     }
 }
