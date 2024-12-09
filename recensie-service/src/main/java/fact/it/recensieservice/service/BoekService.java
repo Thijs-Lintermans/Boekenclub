@@ -1,14 +1,13 @@
 package fact.it.recensieservice.service;
 
 import fact.it.recensieservice.dto.BoekResponse;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClient.Builder;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
 public class BoekService {
 
@@ -17,11 +16,13 @@ public class BoekService {
     @Value("${boekservice.baseurl}")
     private String boekServiceBaseUrl;
 
-    // This constructor is no longer needed because @RequiredArgsConstructor generates it automatically
+    public BoekService(Builder webClientBuilder) {
+        this.webClient = webClientBuilder.baseUrl(boekServiceBaseUrl).build();
+    }
 
     public BoekResponse getBoekById(Long boekId) {
         return this.webClient.get()
-                .uri(boekServiceBaseUrl + "/{id}", boekId) // Use base URL injected via @Value
+                .uri("/{id}", boekId)  // baseUrl wordt al door Builder ingesteld
                 .retrieve()
                 .bodyToMono(BoekResponse.class)
                 .block();

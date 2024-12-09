@@ -3,6 +3,7 @@ package fact.it.besprekingservice.controller;
 import fact.it.besprekingservice.dto.BesprekingRequest;
 import fact.it.besprekingservice.dto.BesprekingResponse;
 import fact.it.besprekingservice.service.BesprekingService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,14 +11,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/bespreking")
+@RequiredArgsConstructor
 public class BesprekingController {
 
     private final BesprekingService besprekingService;
-
-    // Constructor to initialize besprekingService
-    public BesprekingController(BesprekingService besprekingService) {
-        this.besprekingService = besprekingService;
-    }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
