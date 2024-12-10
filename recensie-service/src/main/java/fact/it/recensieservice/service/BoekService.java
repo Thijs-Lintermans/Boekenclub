@@ -13,19 +13,19 @@ public class BoekService {
 
     private final WebClient webClient;
 
-/*    @Value("${boekservice.baseurl}")
-    private String boekServiceBaseUrl;*/
-    private static final String boekServiceBaseUrl = "http://localhost:8082/api/boek";
+    @Value("${boekservice.baseurl}")
+    private String boekServiceBaseUrl;
 
     public BoekService(Builder webClientBuilder) {
         this.webClient = webClientBuilder.baseUrl(boekServiceBaseUrl).build();
     }
 
     public BoekResponse getBoekById(String boekId) {
-        return this.webClient.get()
-                .uri("/{id}", boekId)  // baseUrl wordt al door Builder ingesteld
+        return webClient.get()
+                .uri("http://" + boekServiceBaseUrl + "/api/boek/{id}", boekId) // Dynamisch baseUrl
                 .retrieve()
                 .bodyToMono(BoekResponse.class)
                 .block();
     }
+
 }
