@@ -94,6 +94,7 @@ services:
       - boek-service
       - lid-service
       - recensie-service
+      - bespreking-service
     image: thijslintermans/api-gateway
     ports:
       - 8084:8084
@@ -101,9 +102,12 @@ services:
       - boek-service
       - lid-service
       - recensie-service
+      - bespreking-service
     environment:
       BOEK_SERVICE_BASEURL: boek-service:8082
       LID_SERVICE_BASEURL: lid-service:8080
+      RECENSIE_SERVICE_BASEURL: recensie-service:8081
+      BESPREKING_SERVICE_BASEURL: bespreking-service:8083
 
 
   volumes:
