@@ -1,5 +1,6 @@
 package fact.it.recensieservice.controller;
 
+import fact.it.recensieservice.dto.RecensieRequest;
 import fact.it.recensieservice.dto.RecensieResponse;
 import fact.it.recensieservice.service.RecensieService;
 import org.springframework.http.HttpStatus;
@@ -29,6 +30,25 @@ public class RecensieController {
     @ResponseStatus(HttpStatus.OK)
     public List<RecensieResponse> getAllRecensies() {
         return recensieService.getAllRecensies();
+    }
+
+    // Endpoint om een nieuwe recensie toe te voegen
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public RecensieResponse createRecensie(@RequestBody RecensieRequest recensieRequest) {
+        return recensieService.createRecensie(recensieRequest);
+    }
+
+    @PutMapping("/{recensieId}")
+    @ResponseStatus(HttpStatus.OK)
+    public RecensieResponse updateRecensie(@PathVariable String recensieId, @RequestBody RecensieRequest recensieRequest) {
+        return recensieService.updateRecensie(recensieId, recensieRequest);
+    }
+
+    @DeleteMapping("/{recensieId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteRecensie(@PathVariable String recensieId) {
+        recensieService.deleteRecensie(recensieId);
     }
 }
 

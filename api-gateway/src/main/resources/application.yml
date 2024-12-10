@@ -1,0 +1,136 @@
+server:
+  port: 8084
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
+    reactor.netty: TRACE
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: lid-service-get
+          uri: http://${LID_SERVICE_BASEURL:localhost:8080}
+          predicates:
+            - Path=/api/lid
+            - Method=GET
+          filters:
+            - SetPath=/api/lid/all
+        - id: lid-service-post
+          uri: http://${LID_SERVICE_BASEURL:localhost:8080}
+          predicates:
+            - Path=/api/lid
+            - Method=POST
+          filters:
+            - SetPath=/api/lid
+        - id: lid-service-put
+          uri: http://${LID_SERVICE_BASEURL:localhost:8080}
+          predicates:
+            - Path=/api/lid/{id}
+            - Method=PUT
+          filters:
+            - SetPath=/api/lid/{id}
+        - id: lid-service-delete
+          uri: http://${LID_SERVICE_BASEURL:localhost:8080}
+          predicates:
+            - Path=/api/lid/{id}
+            - Method=DELETE
+          filters:
+            - SetPath=/api/lid/{id}
+
+        - id: boek-service-get
+          uri: http://${BOEK_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/boek
+            - Method=GET
+          filters:
+            - SetPath=/api/boek/all
+        - id: boek-service-post
+          uri: http://${BOEK_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/boek
+            - Method=POST
+          filters:
+            - SetPath=/api/boek
+        - id: boek-service-put
+          uri: http://${BOEK_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/boek/{id}
+            - Method=PUT
+          filters:
+            - SetPath=/api/boek/{id}
+        - id: boek-service-delete
+          uri: http://${BOEK_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/boek/{id}
+            - Method=DELETE
+          filters:
+            - SetPath=/api/boek/{id}
+
+        - id: bespreking-service-get
+          uri: http://${BESPREKING_SERVICE_BASEURL:localhost:8083}
+          predicates:
+            - Path=/bespreking
+            - Method=GET
+          filters:
+            - SetPath=/api/bespreking
+        - id: bespreking-service-post
+          uri: http://${BESPREKING_SERVICE_BASEURL:localhost:8083}
+          predicates:
+            - Path=/bespreking
+            - Method=POST
+          filters:
+            - SetPath=/api/bespreking
+        - id: bespreking-service-put
+          uri: http://${BESPREKING_SERVICE_BASEURL:localhost:8083}
+          predicates:
+            - Path=/bespreking/{id}
+            - Method=PUT
+          filters:
+            - SetPath=/api/bespreking/{id}
+        - id: bespreking-service-delete
+          uri: http://${BESPREKING_SERVICE_BASEURL:localhost:8083}
+          predicates:
+            - Path=/besprekingen/{id}
+            - Method=DELETE
+          filters:
+            - SetPath=/api/bespreking/{id}
+
+        - id: recensie-service-get
+          uri: http://${RECENSIE_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Path=/recensies
+            - Method=GET
+          filters:
+            - SetPath=/api/recensies
+        - id: recensie-service-get-by-lid
+          uri: http://${RECENSIE_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Path=/recensies/{lidId}
+            - Method=GET
+          filters:
+            - SetPath=/api/recensies/{lidId}
+        - id: recensie-service-post
+          uri: http://${RECENSIE_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Path=/recensies
+            - Method=POST
+          filters:
+            - SetPath=/api/recensies
+        - id: recensie-service-put
+          uri: http://${RECENSIE_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Path=/recensies/{id}
+            - Method=PUT
+          filters:
+            - SetPath=/api/recensies/{id}
+        - id: recensie-service-delete
+          uri: http://${RECENSIE_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Path=/recensies/{id}
+            - Method=DELETE
+          filters:
+            - SetPath=/api/recensies/{id}
