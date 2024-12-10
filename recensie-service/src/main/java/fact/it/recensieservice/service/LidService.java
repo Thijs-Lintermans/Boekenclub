@@ -13,10 +13,8 @@ public class LidService {
 
     private final WebClient webClient;
 
-/*    @Value("${lidservice.baseurl}")
-    private String lidServiceBaseUrl;*/
-
-    private static final String lidServiceBaseUrl = "http://localhost:8080/api/lid";
+    @Value("${lidservice.baseurl}")
+    private String lidServiceBaseUrl;
 
 
     // Inject WebClient.Builder
@@ -26,10 +24,10 @@ public class LidService {
 
     // Fetch Lid data using WebClient and return LidResponse
     public LidResponse getLidById(String lidId) {
-        return this.webClient.get()
-                .uri("/{id}", lidId) // baseUrl is al ingesteld in de builder
+        return webClient.get()
+                .uri("http://" + lidServiceBaseUrl + "/api/lid/{id}", lidId) // Dynamisch baseUrl toevoegen
                 .retrieve()
                 .bodyToMono(LidResponse.class)
-                .block(); // Blocking for simplicity; prefer reactive in production
+                .block();
     }
 }
