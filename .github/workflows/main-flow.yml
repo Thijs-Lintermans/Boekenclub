@@ -83,7 +83,7 @@ jobs:
         run: docker push ${{ secrets.DOCKER_USERNAME }}/bespreking-service:latest
   recensieservice:
     runs-on: ubuntu-latest
-    name: Java 17 build, test, deliver bespreking-service container
+    name: Java 17 build, test, deliver recensie-service container
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
