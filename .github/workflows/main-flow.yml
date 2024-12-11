@@ -1,112 +1,115 @@
-# name: Build and deliver containers
+name: Build and deliver containers
 
-# on: push
+on: push
 
-# jobs:
-#   boekservice:
-#     runs-on: ubuntu-latest
-#     name: Java 17 build, test, deliver boek-service container
-#     steps:
-#       - name: Check out repository
-#         uses: actions/checkout@v3
+jobs:
+  boekservice:
+    runs-on: ubuntu-latest
+    name: Java 17 build, test, deliver boek-service container
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
 
-#       - name: Set up JDK 17
-#         uses: actions/setup-java@v3
-#         with:
-#           java-version: 17
-#           cache: maven
-#           distribution: adopt
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          cache: maven
+          distribution: adopt
 
-#       - name: Build, test and package project
-#         working-directory: ./boek-service
-#         run: mvn package -B
+      - name: Build, test and package project
+        working-directory: ./boek-service
+        run: mvn package -B
 
-#       - name: Docker login
-#         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
-#       - name: Docker Build
-#         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/boek-service:latest ./boek-service
+      - name: Docker Build
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/boek-service:latest ./boek-service
 
-#       - name: Upload container to Docker Hub with Push
-#         run: docker push ${{ secrets.DOCKER_USERNAME }}/boek-service:latest
-#   lid-service:
-#     runs-on: ubuntu-latest
-#     name: Java 17 build, test, deliver lid-service container
-#     steps:
-#       - name: Check out repository
-#         uses: actions/checkout@v3
+      - name: Upload container to Docker Hub with Push
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/boek-service:latest
 
-#       - name: Set up JDK 17
-#         uses: actions/setup-java@v3
-#         with:
-#           java-version: 17
-#           cache: maven
-#           distribution: adopt
+  lid-service:
+    runs-on: ubuntu-latest
+    name: Java 17 build, test, deliver lid-service container
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
 
-#       - name: Build, test and package project
-#         working-directory: ./lid-service
-#         run: mvn package -B
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          cache: maven
+          distribution: adopt
 
-#       - name: Docker login
-#         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build, test and package project
+        working-directory: ./lid-service
+        run: mvn package -B
 
-#       - name: Docker Build
-#         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/lid-service:latest ./lid-service
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
-#       - name: Upload container to Docker Hub with Push
-#         run: docker push ${{ secrets.DOCKER_USERNAME }}/lid-service:latest
-#   besprekingservice:
-#     runs-on: ubuntu-latest
-#     name: Java 17 build, test, deliver bespreking-service container
-#     steps:
-#       - name: Check out repository
-#         uses: actions/checkout@v3
+      - name: Docker Build
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/lid-service:latest ./lid-service
 
-#       - name: Set up JDK 17
-#         uses: actions/setup-java@v3
-#         with:
-#           java-version: 17
-#           cache: maven
-#           distribution: adopt
+      - name: Upload container to Docker Hub with Push
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/lid-service:latest
 
-#       - name: Build, test and package project
-#         working-directory: ./bespreking-service
-#         run: mvn package -B
+  besprekingservice:
+    runs-on: ubuntu-latest
+    name: Java 17 build, test, deliver bespreking-service container
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
 
-#       - name: Docker login
-#         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          cache: maven
+          distribution: adopt
 
-#       - name: Docker Build
-#         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/bespreking-service:latest ./bespreking-service
+      - name: Build, test and package project without tests
+        working-directory: ./bespreking-service
+        run: mvn package -DskipTests
 
-#       - name: Upload container to Docker Hub with Push
-#         run: docker push ${{ secrets.DOCKER_USERNAME }}/bespreking-service:latest
-#   recensieservice:
-#     runs-on: ubuntu-latest
-#     name: Java 17 build, test, deliver recensie-service container
-#     steps:
-#       - name: Check out repository
-#         uses: actions/checkout@v3
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
-#       - name: Set up JDK 17
-#         uses: actions/setup-java@v3
-#         with:
-#           java-version: 17
-#           cache: maven
-#           distribution: adopt
+      - name: Docker Build
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/bespreking-service:latest ./bespreking-service
 
-#       - name: Build, test and package project
-#         working-directory: ./recensie-service
-#         run: mvn package -B
+      - name: Upload container to Docker Hub with Push
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/bespreking-service:latest
 
-#       - name: Docker login
-#         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+  recensieservice:
+    runs-on: ubuntu-latest
+    name: Java 17 build, test, deliver recensie-service container
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
 
-#       - name: Docker Build
-#         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/recensie-service:latest ./recensie-service
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          cache: maven
+          distribution: adopt
 
-#       - name: Upload container to Docker Hub with Push
-#         run: docker push ${{ secrets.DOCKER_USERNAME }}/recensie-service:latest
+      - name: Build, test and package project without tests
+        working-directory: ./recensie-service
+        run: mvn package -DskipTests
+
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Docker Build
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/recensie-service:latest ./recensie-service
+
+      - name: Upload container to Docker Hub with Push
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/recensie-service:latest
 # #  apigateway:
 # #    runs-on: ubuntu-latest
 # #    name: Java 17 build, test, deliver api-gateway container
