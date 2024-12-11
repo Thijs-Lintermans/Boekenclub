@@ -25,10 +25,10 @@
 #         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
 #       - name: Docker Build
-#         run: docker build -t ${{ secrets.DOCKER_USER }}/boek-service:latest ./boek-service
+#         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/boek-service:latest ./boek-service
 
 #       - name: Upload container to Docker Hub with Push
-#         run: docker push ${{ secrets.DOCKER_USER }}/boek-service:latest
+#         run: docker push ${{ secrets.DOCKER_USERNAME }}/boek-service:latest
 #   lid-service:
 #     runs-on: ubuntu-latest
 #     name: Java 17 build, test, deliver lid-service container
@@ -37,7 +37,7 @@
 #         uses: actions/checkout@v3
 
 #       - name: Set up JDK 17
-#         uses: actions/setup-jave@v3
+#         uses: actions/setup-java@v3
 #         with:
 #           java-version: 17
 #           cache: maven
@@ -51,10 +51,10 @@
 #         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
 #       - name: Docker Build
-#         run: docker build -t ${{ secrets.DOCKER_USER }}/lid-service:latest ./lid-service
+#         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/lid-service:latest ./lid-service
 
 #       - name: Upload container to Docker Hub with Push
-#         run: docker push ${{ secrets.DOCKER_USER }}/lid-service:latest
+#         run: docker push ${{ secrets.DOCKER_USERNAME }}/lid-service:latest
 #   besprekingservice:
 #     runs-on: ubuntu-latest
 #     name: Java 17 build, test, deliver bespreking-service container
@@ -77,13 +77,13 @@
 #         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
 #       - name: Docker Build
-#         run: docker build -t ${{ secrets.DOCKER_USER }}/bespreking-service:latest ./bespreking-service
+#         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/bespreking-service:latest ./bespreking-service
 
 #       - name: Upload container to Docker Hub with Push
-#         run: docker push ${{ secrets.DOCKER_USER }}/bespreking-service:latest
+#         run: docker push ${{ secrets.DOCKER_USERNAME }}/bespreking-service:latest
 #   recensieservice:
 #     runs-on: ubuntu-latest
-#     name: Java 17 build, test, deliver bespreking-service container
+#     name: Java 17 build, test, deliver recensie-service container
 #     steps:
 #       - name: Check out repository
 #         uses: actions/checkout@v3
@@ -103,33 +103,33 @@
 #         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
 #       - name: Docker Build
-#         run: docker build -t ${{ secrets.DOCKER_USER }}/recensie-service:latest ./recensie-service
+#         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/recensie-service:latest ./recensie-service
 
 #       - name: Upload container to Docker Hub with Push
-#         run: docker push ${{ secrets.DOCKER_USER }}/recensie-service:latest
-#   apigateway:
-#     runs-on: ubuntu-latest
-#     name: Java 17 build, test, deliver api-gateway container
-#     steps:
-#       - name: Check out repository
-#         uses: actions/checkout@v3
+#         run: docker push ${{ secrets.DOCKER_USERNAME }}/recensie-service:latest
+# #  apigateway:
+# #    runs-on: ubuntu-latest
+# #    name: Java 17 build, test, deliver api-gateway container
+# #    steps:
+# #      - name: Check out repository
+# #        uses: actions/checkout@v3
 
-#       - name: Set up JDK 17
-#         uses: actions/setup-java@v3
-#         with:
-#           java-version: 17
-#           cache: maven
-#           distribution: adopt
+# #      - name: Set up JDK 17
+# #        uses: actions/setup-java@v3
+# #        with:
+# #          java-version: 17
+# #          cache: maven
+# #          distribution: adopt
 
-#       - name: Build, test and package project
-#         working-directory: ./api-gateway
-#         run: mvn package -B -DskipTests
+# #      - name: Build, test and package project
+# #        working-directory: ./api-gateway
+# #        run: mvn package -B -DskipTests
 
-#       - name: Docker login
-#         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+# #      - name: Docker login
+# #        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
-#       - name: Docker Build
-#         run: docker build --build-arg GOOGLE_CLIENTID=${{ secrets.GOOGLE_CLIENTID }} --build-arg GOOGLE_CLIENTSECRET=${{ secrets.GOOGLE_CLIENTSECRET }} -t ${{ secrets.DOCKER_USER }}/api-gateway:latest ./api-gateway
+# #      - name: Docker Build
+# #        run: docker build --build-arg GOOGLE_CLIENTID=${{ secrets.GOOGLE_CLIENTID }} --build-arg GOOGLE_CLIENTSECRET=${{ secrets.GOOGLE_CLIENTSECRET }} -t ${{ secrets.DOCKER_USER }}/api-gateway:latest ./api-gateway
 
-#       - name: Upload container to Docker Hub with Push
-#         run: docker push ${{ secrets.DOCKER_USER }}/api-gateway:latest
+# #      - name: Upload container to Docker Hub with Push
+# #        run: docker push ${{ secrets.DOCKER_USER }}/api-gateway:latest
