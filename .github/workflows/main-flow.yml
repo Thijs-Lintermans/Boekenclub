@@ -25,10 +25,10 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Docker Build
-        run: docker build -t ${{ secrets.DOCKER_USER }}/boek-service:latest ./boek-service
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/boek-service:latest ./boek-service
 
       - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.DOCKER_USER }}/boek-service:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/boek-service:latest
   lid-service:
     runs-on: ubuntu-latest
     name: Java 17 build, test, deliver lid-service container
@@ -51,10 +51,10 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Docker Build
-        run: docker build -t ${{ secrets.DOCKER_USER }}/lid-service:latest ./lid-service
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/lid-service:latest ./lid-service
 
       - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.DOCKER_USER }}/lid-service:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/lid-service:latest
   besprekingservice:
     runs-on: ubuntu-latest
     name: Java 17 build, test, deliver bespreking-service container
@@ -77,10 +77,10 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Docker Build
-        run: docker build -t ${{ secrets.DOCKER_USER }}/bespreking-service:latest ./bespreking-service
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/bespreking-service:latest ./bespreking-service
 
       - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.DOCKER_USER }}/bespreking-service:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/bespreking-service:latest
   recensieservice:
     runs-on: ubuntu-latest
     name: Java 17 build, test, deliver bespreking-service container
@@ -106,7 +106,7 @@ jobs:
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/recensie-service:latest ./recensie-service
 
       - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.DOCKER_USER }}/recensie-service:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/recensie-service:latest
 #  apigateway:
 #    runs-on: ubuntu-latest
 #    name: Java 17 build, test, deliver api-gateway container
