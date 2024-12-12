@@ -25,7 +25,7 @@ services:
   mysql-recensie:
     image: mysql:latest
     ports:
-      - 3306:3306
+      - 3308:3306
     volumes:
       - mysql_recensie_data:/var/lib/mysql
     environment:
@@ -40,7 +40,7 @@ services:
     links:
       - mongo-lid
     environment:
-      MONGODB_PORT: 27018
+      MONGODB_PORT: 27017
       MONGODB_HOST: mongo-lid
 
   boek-service:
@@ -52,7 +52,7 @@ services:
     links:
       - mongo-boek
     environment:
-      MONGODB_PORT: 27017
+      MONGODB_PORT: 27018
       MONGODB_HOST: mongo-boek
 
   bespreking-service:
@@ -89,29 +89,28 @@ services:
       MYSQL_DB_HOST: mysql-recensie
       MYSQL_DB_PORT: 3306
 
-  api-gateway:
-    depends_on:
-      - boek-service
-      - lid-service
-      - recensie-service
-      - bespreking-service
-    image: thijslintermans/api-gateway
-    ports:
-      - 8084:8084
-    links:
-      - boek-service
-      - lid-service
-      - recensie-service
-      - bespreking-service
-    environment:
-      BOEK_SERVICE_BASEURL: boek-service:8082
-      LID_SERVICE_BASEURL: lid-service:8080
-      RECENSIE_SERVICE_BASEURL: recensie-service:8081
-      BESPREKING_SERVICE_BASEURL: bespreking-service:8083
+#  api-gateway:
+#    depends_on:
+#      - boek-service
+#      - lid-service
+ #     - recensie-service
+  #    - bespreking-service
+  #  image: thijslintermans/api-gateway
+ #   ports:
+  #    - 8084:8084
+   # links:
+  #    - boek-service
+  #    - lid-service
+  #    - recensie-service
+  #    - bespreking-service
+ #   environment:
+ #     BOEK_SERVICE_BASEURL: boek-service:8082
+ #     LID_SERVICE_BASEURL: lid-service:8080
+ #     RECENSIE_SERVICE_BASEURL: recensie-service:8081
+ #     BESPREKING_SERVICE_BASEURL: bespreking-service:8083
 
-
-  volumes:
-    mongodb_lid_data:
-    mongodb_boek_data:
-    mysql_bespreking_data:
-    mysql_recensie_data:
+volumes:
+  mongodb_lid_data:
+  mongodb_boek_data:
+  mysql_bespreking_data:
+  mysql_recensie_data:
