@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -15,6 +16,6 @@ public class BoekRequest {
     private String titel;
     private String auteur;
     private String genre;
-    private Date publicatieDatum;
+    private LocalDate publicatieDatum;
     private Integer aantalPaginas;
 }

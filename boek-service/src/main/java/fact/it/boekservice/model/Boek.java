@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Document(value="boek")
@@ -18,6 +19,6 @@ public class Boek {
     private String titel;
     private String auteur;
     private String genre;
-    private Date publicatieDatum;
+    private LocalDate publicatieDatum;
     private Integer aantalPaginas;
 }
