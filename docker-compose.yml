@@ -89,25 +89,26 @@ services:
       MYSQL_DB_HOST: mysql-recensie
       MYSQL_DB_PORT: 3306
 
-#  api-gateway:
-#    depends_on:
-#      - boek-service
-#      - lid-service
- #     - recensie-service
-  #    - bespreking-service
-  #  image: thijslintermans/api-gateway
- #   ports:
-  #    - 8084:8084
-   # links:
-  #    - boek-service
-  #    - lid-service
-  #    - recensie-service
-  #    - bespreking-service
- #   environment:
- #     BOEK_SERVICE_BASEURL: boek-service:8082
- #     LID_SERVICE_BASEURL: lid-service:8080
- #     RECENSIE_SERVICE_BASEURL: recensie-service:8081
- #     BESPREKING_SERVICE_BASEURL: bespreking-service:8083
+  api-gateway:
+    depends_on:
+      - boek-service
+      - lid-service
+      - recensie-service
+      - bespreking-service
+    image: thijslintermans/api-gateway
+    ports:
+      - 8084:8084
+    links:
+      - boek-service
+      - lid-service
+      - recensie-service
+      - bespreking-service
+    environment:
+      BOEK_SERVICE_BASEURL: boek-service:8082
+      LID_SERVICE_BASEURL: lid-service:8080
+      RECENSIE_SERVICE_BASEURL: recensie-service:8081
+      BESPREKING_SERVICE_BASEURL: bespreking-service:8083
+
 
 volumes:
   mongodb_lid_data:
