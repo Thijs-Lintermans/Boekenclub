@@ -41,4 +41,25 @@ public class RecensieRequest {
     public LidResponse getLid() {
         return lid;
     }
+
+    // Setters
+    public void setTitelRecensie(String titelRecensie) {
+        this.titelRecensie = titelRecensie;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDatumTijd(LocalDateTime datumTijd) {
+        this.datumTijd = datumTijd;
+    }
+
+    public void setBoek(BoekResponse boek) {
+        this.boek = boek;
+    }
+
+    public void setLid(LidResponse lid) {
+        this.lid = lid;
+    }
 }
