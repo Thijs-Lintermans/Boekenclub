@@ -1,5 +1,6 @@
 package fact.it.recensieservice.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class BoekResponse {
@@ -7,7 +8,7 @@ public class BoekResponse {
     private String titel;
     private String auteur;
     private String genre;
-    private Date publicatieDatum;
+    private LocalDate publicatieDatum;
     private Integer aantalPaginas;
 
     // Default constructor
@@ -15,7 +16,7 @@ public class BoekResponse {
     }
 
     // All arguments constructor
-    public BoekResponse(String id, String titel, String auteur, String genre, Date publicatieDatum, Integer aantalPaginas) {
+    public BoekResponse(String id, String titel, String auteur, String genre, LocalDate publicatieDatum, Integer aantalPaginas) {
         this.id = id;
         this.titel = titel;
         this.auteur = auteur;
@@ -41,7 +42,7 @@ public class BoekResponse {
         return genre;
     }
 
-    public Date getPublicatieDatum() {
+    public LocalDate getPublicatieDatum() {
         return publicatieDatum;
     }
 
@@ -55,7 +56,7 @@ public class BoekResponse {
         private String titel;
         private String auteur;
         private String genre;
-        private Date publicatieDatum;
+        private LocalDate publicatieDatum;
         private Integer aantalPaginas;
 
         public Builder id(String id) {
@@ -78,7 +79,7 @@ public class BoekResponse {
             return this;
         }
 
-        public Builder publicatieDatum(Date publicatieDatum) {
+        public Builder publicatieDatum(LocalDate publicatieDatum) {
             this.publicatieDatum = publicatieDatum;
             return this;
         }
