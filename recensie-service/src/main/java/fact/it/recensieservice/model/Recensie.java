@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class Recensie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     private String titelRecensie;
     private String description;
     private LocalDateTime datumTijd;
@@ -29,11 +29,11 @@ public class Recensie {
     }
 
     // Getters and Setters
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
