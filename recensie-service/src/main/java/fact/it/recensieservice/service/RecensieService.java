@@ -79,9 +79,11 @@ public class RecensieService {
 
     public void deleteRecensie(String recensieId) {
         Recensie recensie = recensieRepository.findById(recensieId)
-                .orElseThrow(() -> new IllegalArgumentException("Recensie met ID " + recensieId + " niet gevonden."));
-        recensieRepository.delete(recensie);
+                .orElseThrow(() -> new IllegalArgumentException("Recensie met ID " + recensieId + " niet gevonden"));
+
+        recensieRepository.deleteById(recensieId);
     }
+
 
     private RecensieResponse mapToResponse(Recensie recensie) {
         BoekResponse boek = boekService.getBoekById(recensie.getBoekId());

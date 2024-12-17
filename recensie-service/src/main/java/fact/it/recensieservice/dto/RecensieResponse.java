@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 
 public class RecensieResponse {
-    private Long id;
+    private int id;
     private String titelRecensie;
     private String description;
     private LocalDateTime datumTijd;
@@ -12,7 +12,7 @@ public class RecensieResponse {
     private LidResponse lid;
 
     // Constructor
-    public RecensieResponse(Long id, String titelRecensie, String description, LocalDateTime datumTijd, BoekResponse boek, LidResponse lid) {
+    public RecensieResponse(int id, String titelRecensie, String description, LocalDateTime datumTijd, BoekResponse boek, LidResponse lid) {
         this.id = id;
         this.titelRecensie = titelRecensie;
         this.description = description;
@@ -24,14 +24,14 @@ public class RecensieResponse {
     // Getters and Setters
 
     public static class Builder {
-        private Long id;
+        private int id;
         private String titelRecensie;
         private String description;
         private LocalDateTime datumTijd;
         private BoekResponse boek;
         private LidResponse lid;
 
-        public Builder id(Long id) {
+        public Builder id(int id) {
             this.id = id;
             return this;
         }
@@ -70,7 +70,7 @@ public class RecensieResponse {
         return new Builder();
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
