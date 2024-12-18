@@ -54,8 +54,8 @@ public class RecensieService {
                 recensieRequest.getTitelRecensie(),
                 recensieRequest.getDescription(),
                 LocalDateTime.now(),
-                recensieRequest.getLidId(),
-                recensieRequest.getBoekId()
+                recensieRequest.getBoekId(),
+                recensieRequest.getLidId()
         );
 
         Recensie savedRecensie = recensieRepository.save(recensie);
