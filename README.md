@@ -144,6 +144,10 @@ Onderstaande afbeelding geeft de deployment architectuur van het Boekenclub Proj
 
 Hieronder vind je de belangrijkste API-endpoints per service. Screenshots van Postman of de testresultaten zijn toegevoegd.
 
+### Authorization
+ ![401 error](images/401Lid.png)  
+
+
 ### 1. **Lid Service**
 - **GET /api/lid** - Haal alle leden op  
   ![GET /api/lid](images/getLeden.png)  
