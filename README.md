@@ -76,8 +76,8 @@ De volgende endpoints maken interactie met de verschillende services mogelijk:
 ## 🔄 Samenwerking tussen Services
 
 De microservices communiceren via RESTful API’s. Bijvoorbeeld:
-- **Recensie Service** gebruikt de **Boek Service** om boekinformatie op te halen voor recensies.
-- **Bespreking Service** raadpleegt de **Lid Service** om deelnemers aan een bespreking te beheren.
+- **Recensie Service** raadpleegt de **Boek Service** en **Lid Service** om boekinformatie en informatie over de leden op te halen voor recensies.
+
 
 ---
 
