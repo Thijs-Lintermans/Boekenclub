@@ -102,7 +102,7 @@ Hieronder vind je de belangrijkste API-endpoints per service. Screenshots van Po
 - **GET /api/recensies** - Haal alle recensies op  
   ![GET /api/recensie](images/get_api_recensie.png)
 
--**GET /api/recensies/{lidID}** - haal recensie op via lidID
+- **GET /api/recensies/{lidID}** - haal recensie op via lidID
   ![GET /api/recensie](images/get_api_recensie.png)
 
 - **POST /api/recensies** - Voeg een nieuwe recensie toe  
