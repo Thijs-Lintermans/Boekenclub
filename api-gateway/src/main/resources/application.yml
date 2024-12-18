@@ -72,6 +72,11 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/boek/all
+            - name: CORS
+              args:
+                allowedOrigins: "http://localhost:4200"
+                allowedMethods: "GET, POST, PUT, DELETE"
+                allowedHeaders: "Content-Type, Authorization"
         - id: boek-service-post
           uri: http://${BOEK_SERVICE_BASEURL:localhost:8082}
           predicates:
@@ -101,6 +106,11 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/bespreking
+            - name: CORS
+              args:
+                allowedOrigins: "http://localhost:4200"
+                allowedMethods: "GET, POST, PUT, DELETE"
+                allowedHeaders: "Content-Type, Authorization"
         - id: bespreking-service-post
           uri: http://${BESPREKING_SERVICE_BASEURL:localhost:8083}
           predicates:
@@ -130,6 +140,11 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/recensies
+            - name: CORS
+              args:
+                allowedOrigins: "http://localhost:4200"
+                allowedMethods: "GET, POST, PUT, DELETE"
+                allowedHeaders: "Content-Type, Authorization"
         - id: recensie-service-get-by-lid
           uri: http://${RECENSIE_SERVICE_BASEURL:localhost:8081}
           predicates:
