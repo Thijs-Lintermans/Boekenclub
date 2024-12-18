@@ -37,8 +37,6 @@ services:
     image: thijslintermans/lid-service
     ports:
       - 8080:8080
-    links:
-      - mongo-lid
     environment:
       MONGODB_PORT: 27017
       MONGODB_HOST: mongo-lid
@@ -49,8 +47,6 @@ services:
     image: thijslintermans/boek-service
     ports:
       - 8082:8082
-    links:
-      - mongo-boek
     environment:
       MONGODB_PORT: 27018
       MONGODB_HOST: mongo-boek
