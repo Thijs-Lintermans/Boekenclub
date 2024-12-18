@@ -32,10 +32,9 @@ spring:
       default-filters:
         - name: RequestRateLimiter
           args:
-            rateLimiter:
-              redis-rate-limiter:
-                replenishRate: 10       # Number of requests per second
-                burstCapacity: 20
+            redis-rate-limiter:
+              replenishRate: 10       # Number of requests per second
+              burstCapacity: 20
       routes:
         - id: lid-service-get
           uri: http://${LID_SERVICE_BASEURL:localhost:8080}
