@@ -9,6 +9,11 @@ logging:
     reactor.netty: TRACE
 
 spring:
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
   security:
     oauth2:
       client:
@@ -24,6 +29,13 @@ spring:
 
   cloud:
     gateway:
+      default-filters:
+        - name: RequestRateLimiter
+          args:
+            rateLimiter:
+              redis-rate-limiter:
+                replenishRate: 10       # Number of requests per second
+                burstCapacity: 20       # Max number of requests in a burst
       routes:
         - id: lid-service-get
           uri: http://${LID_SERVICE_BASEURL:localhost:8080}
