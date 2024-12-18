@@ -24,8 +24,8 @@ public class SecurityConfig {
 
                                 .pathMatchers(HttpMethod.GET, "/api/boek").permitAll()
                                 .pathMatchers(HttpMethod.GET, "/api/bespreking").permitAll()
-                                .anyExchange()
-                                .authenticated()
+
+                                .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(withDefaults())
