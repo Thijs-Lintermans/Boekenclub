@@ -72,11 +72,18 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/boek/all
-            - name: Cors
+            - name: AddRequestHeader
               args:
-                allowedOrigins: "http://localhost:4200"
-                allowedMethods: "GET, POST, PUT, DELETE"
-                allowedHeaders: "Content-Type, Authorization"
+                name: "Access-Control-Allow-Origin"
+                value: "http://localhost:4200"
+            - name: AddRequestHeader
+              args:
+                name: "Access-Control-Allow-Methods"
+                value: "GET, POST, PUT, DELETE"
+            - name: AddRequestHeader
+              args:
+                name: "Access-Control-Allow-Headers"
+                value: "Content-Type, Authorization"
         - id: boek-service-post
           uri: http://${BOEK_SERVICE_BASEURL:localhost:8082}
           predicates:
@@ -106,11 +113,18 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/bespreking
-            - name: Cors
+            - name: AddRequestHeader
               args:
-                allowedOrigins: "http://localhost:4200"
-                allowedMethods: "GET, POST, PUT, DELETE"
-                allowedHeaders: "Content-Type, Authorization"
+                name: "Access-Control-Allow-Origin"
+                value: "http://localhost:4200"
+            - name: AddRequestHeader
+              args:
+                name: "Access-Control-Allow-Methods"
+                value: "GET, POST, PUT, DELETE"
+            - name: AddRequestHeader
+              args:
+                name: "Access-Control-Allow-Headers"
+                value: "Content-Type, Authorization"
         - id: bespreking-service-post
           uri: http://${BESPREKING_SERVICE_BASEURL:localhost:8083}
           predicates:
@@ -140,11 +154,18 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/recensies
-            - name: Cors
+            - name: AddRequestHeader
               args:
-                allowedOrigins: "http://localhost:4200"
-                allowedMethods: "GET, POST, PUT, DELETE"
-                allowedHeaders: "Content-Type, Authorization"
+                name: "Access-Control-Allow-Origin"
+                value: "http://localhost:4200"
+            - name: AddRequestHeader
+              args:
+                name: "Access-Control-Allow-Methods"
+                value: "GET, POST, PUT, DELETE"
+            - name: AddRequestHeader
+              args:
+                name: "Access-Control-Allow-Headers"
+                value: "Content-Type, Authorization"
         - id: recensie-service-get-by-lid
           uri: http://${RECENSIE_SERVICE_BASEURL:localhost:8081}
           predicates:
