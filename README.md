@@ -99,16 +99,19 @@ Hieronder vind je de belangrijkste API-endpoints per service. Screenshots van Po
 ---
 
 ### 3. **Recensie Service**
-- **GET /api/recensie** - Haal alle recensies op  
-  ![GET /api/recensie](images/get_api_recensie.png)  
+- **GET /api/recensies** - Haal alle recensies op  
+  ![GET /api/recensie](images/get_api_recensie.png)
 
-- **POST /api/recensie** - Voeg een nieuwe recensie toe  
+-**GET /api/recensies/{lidID}** - haal recensie op via lidID
+  ![GET /api/recensie](images/get_api_recensie.png)
+
+- **POST /api/recensies** - Voeg een nieuwe recensie toe  
   ![POST /api/recensie](images/post_api_recensie.png)  
 
-- **PUT /api/recensie/{id}** - Update een recensie  
+- **PUT /api/recensies/{id}** - Update een recensie  
   ![PUT /api/recensie/{id}](images/put_api_recensie.png)  
 
-- **DELETE /api/recensie/{id}** - Verwijder een recensie  
+- **DELETE /api/recensies/{id}** - Verwijder een recensie  
   ![DELETE /api/recensie/{id}](images/delete_api_recensie.png)  
 
 ---
