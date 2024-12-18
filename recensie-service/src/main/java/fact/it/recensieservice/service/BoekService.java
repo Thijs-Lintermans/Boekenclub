@@ -22,7 +22,7 @@ public class BoekService {
 
     public BoekResponse getBoekById(String boekId) {
         return webClient.get()
-                .uri("http://" + boekServiceBaseUrl + "/api/boek/{id}", boekId) // Dynamisch baseUrl
+                .uri("http://" + boekServiceBaseUrl + "/api/boek/", boekId) // Dynamisch baseUrl
                 .retrieve()
                 .bodyToMono(BoekResponse.class)
                 .block();
