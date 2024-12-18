@@ -42,45 +42,44 @@ public class RecensieService {
     }
 
     public RecensieResponse createRecensie(RecensieRequest recensieRequest) {
-        System.out.println("RecensieRequest: " + recensieRequest);
-        System.out.println("Lid: " + recensieRequest.getLid());
-        if (recensieRequest.getLid() == null) {
-            throw new IllegalArgumentException("Lid is required and cannot be null.");
+        if (recensieRequest.getLidId() == null || recensieRequest.getBoekId() == null) {
+            throw new IllegalArgumentException("LidId and BoekId are required and cannot be null.");
         }
-        // Validate Lid and Boek existence
-        lidService.getLidById(recensieRequest.getLid().getId());
-        boekService.getBoekById(recensieRequest.getBoek().getId());
+
+        // Validate the Lid and Boek existence using the provided IDs
+        LidResponse lid = lidService.getLidById(recensieRequest.getLidId());
+        BoekResponse boek = boekService.getBoekById(recensieRequest.getBoekId());
 
         Recensie recensie = new Recensie(
-                recensieRequest.getTitelRecensie(), // Correct getter for title
-                recensieRequest.getDescription(),  // Correct getter for content
+                recensieRequest.getTitelRecensie(),
+                recensieRequest.getDescription(),
                 LocalDateTime.now(),
-                recensieRequest.getLid().getId(),  // Get lidId from LidResponse
-                recensieRequest.getBoek().getId()  // Get boekId from BoekResponse
+                recensieRequest.getLidId(),
+                recensieRequest.getBoekId()
         );
 
         Recensie savedRecensie = recensieRepository.save(recensie);
         return mapToResponse(savedRecensie);
     }
 
+
     public RecensieResponse updateRecensie(String recensieId, RecensieRequest recensieRequest) {
         Recensie recensie = recensieRepository.findById(recensieId)
                 .orElseThrow(() -> new IllegalArgumentException("Recensie met ID " + recensieId + " niet gevonden."));
 
         // Validate Lid and Boek existence
-        lidService.getLidById(recensieRequest.getLid().getId()); // Use LidResponse's getId() method
-        boekService.getBoekById(recensieRequest.getBoek().getId()); // Use BoekResponse's getId() method
+        LidResponse lid = lidService.getLidById(recensieRequest.getLidId()); // Directly use the Lid ID
+        BoekResponse boek = boekService.getBoekById(recensieRequest.getBoekId()); // Directly use the Boek ID
 
-        recensie.setTitelRecensie(recensieRequest.getTitelRecensie()); // Correct getter for title
-        recensie.setDescription(recensieRequest.getDescription());    // Correct getter for content
-        recensie.setLidId(recensieRequest.getLid().getId());          // Get lidId from LidResponse
-        recensie.setBoekId(recensieRequest.getBoek().getId());        // Get boekId from BoekResponse
+        recensie.setTitelRecensie(recensieRequest.getTitelRecensie());
+        recensie.setDescription(recensieRequest.getDescription());
+        recensie.setLidId(lid.getId()); // Correct setter for lidId
+        recensie.setBoekId(boek.getId()); // Correct setter for boekId
         recensie.setDatumTijd(LocalDateTime.now());
 
         Recensie updatedRecensie = recensieRepository.save(recensie);
         return mapToResponse(updatedRecensie);
     }
-
 
     public void deleteRecensie(String recensieId) {
         Recensie recensie = recensieRepository.findById(recensieId)
@@ -88,7 +87,6 @@ public class RecensieService {
 
         recensieRepository.deleteById(recensieId);
     }
-
 
     private RecensieResponse mapToResponse(Recensie recensie) {
         BoekResponse boek = boekService.getBoekById(recensie.getBoekId());
@@ -114,6 +112,7 @@ public class RecensieService {
                 String boekId1 = "6753631ff560ca1281479d0b";
                 String boekId2 = "675746c20ac9ea19bdad821c";
 
+                // Validate existence of the Lid and Boek before creating recensies
                 LidResponse lid1 = lidService.getLidById(lidId1);
                 LidResponse lid2 = lidService.getLidById(lidId2);
                 BoekResponse boek1 = boekService.getBoekById(boekId1);

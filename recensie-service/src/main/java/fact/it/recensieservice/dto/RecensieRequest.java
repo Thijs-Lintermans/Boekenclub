@@ -6,60 +6,60 @@ public class RecensieRequest {
     private String titelRecensie;
     private String description;
     private LocalDateTime datumTijd;
-    private BoekResponse boek; // Embed BoekResponse
-    private LidResponse lid;   // Embed LidResponse
+    private String boekId; // Use just the ID
+    private String lidId;  // Use just the ID
 
     // Constructor
-    public RecensieRequest(String titelRecensie, String description, LocalDateTime datumTijd, BoekResponse boek, LidResponse lid) {
+    public RecensieRequest(String titelRecensie, String description, LocalDateTime datumTijd, String boekId, String lidId) {
         this.titelRecensie = titelRecensie;
         this.description = description;
         this.datumTijd = datumTijd;
-        this.boek = boek;
-        this.lid = lid;
+        this.boekId = boekId;
+        this.lidId = lidId;
     }
 
     // Default Constructor
     public RecensieRequest() {}
 
-    // Getters
+    // Getters and Setters
     public String getTitelRecensie() {
         return titelRecensie;
+    }
+
+    public void setTitelRecensie(String titelRecensie) {
+        this.titelRecensie = titelRecensie;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public LocalDateTime getDatumTijd() {
-        return datumTijd;
-    }
-
-    public BoekResponse getBoek() {
-        return boek;
-    }
-
-    public LidResponse getLid() {
-        return lid;
-    }
-
-    // Setters
-    public void setTitelRecensie(String titelRecensie) {
-        this.titelRecensie = titelRecensie;
-    }
-
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public LocalDateTime getDatumTijd() {
+        return datumTijd;
     }
 
     public void setDatumTijd(LocalDateTime datumTijd) {
         this.datumTijd = datumTijd;
     }
 
-    public void setBoek(BoekResponse boek) {
-        this.boek = boek;
+    public String getBoekId() {
+        return boekId;
     }
 
-    public void setLid(LidResponse lid) {
-        this.lid = lid;
+    public void setBoekId(String boekId) {
+        this.boekId = boekId;
+    }
+
+    public String getLidId() {
+        return lidId;
+    }
+
+    public void setLidId(String lidId) {
+        this.lidId = lidId;
     }
 }
+

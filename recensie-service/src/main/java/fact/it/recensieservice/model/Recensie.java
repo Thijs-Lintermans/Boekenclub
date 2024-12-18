@@ -9,23 +9,25 @@ public class Recensie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String titelRecensie;
     private String description;
     private LocalDateTime datumTijd;
-    private String lidId;
-    private String boekId;
+
+    private String boekId; // Moved this above lidId
+    private String lidId;  // Moved this below boekId
 
     // No-argument constructor
     public Recensie() {
     }
 
     // All-arguments constructor
-    public Recensie(String titelRecensie, String description, LocalDateTime datumTijd, String lidId, String boekId) {
+    public Recensie(String titelRecensie, String description, LocalDateTime datumTijd, String boekId, String lidId) {
         this.titelRecensie = titelRecensie;
         this.description = description;
         this.datumTijd = datumTijd;
-        this.lidId = lidId;
         this.boekId = boekId;
+        this.lidId = lidId;
     }
 
     // Getters and Setters
@@ -61,19 +63,19 @@ public class Recensie {
         this.datumTijd = datumTijd;
     }
 
-    public String getLidId() {
-        return lidId;
-    }
-
-    public void setLidId(String lidId) {
-        this.lidId = lidId;
-    }
-
     public String getBoekId() {
         return boekId;
     }
 
     public void setBoekId(String boekId) {
         this.boekId = boekId;
+    }
+
+    public String getLidId() {
+        return lidId;
+    }
+
+    public void setLidId(String lidId) {
+        this.lidId = lidId;
     }
 }

@@ -36,9 +36,6 @@ public class RecensieController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public RecensieResponse createRecensie(@RequestBody RecensieRequest recensieRequest) {
-        if (recensieRequest.getLid() == null) {
-            throw new IllegalArgumentException("Lid is required and cannot be null.");
-        }
         return recensieService.createRecensie(recensieRequest);
     }
 

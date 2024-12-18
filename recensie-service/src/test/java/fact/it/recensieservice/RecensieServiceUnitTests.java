@@ -51,14 +51,12 @@ public class RecensieServiceUnitTests {
         recensieRequest.setTitelRecensie("Top boek!");
         recensieRequest.setDescription("Een heel interessant boek.");
         recensieRequest.setDatumTijd(LocalDateTime.now());
+        recensieRequest.setBoekId("boek456");  // Use the ID directly
+        recensieRequest.setLidId("lid123");    // Use the ID directly
 
         // LidResponse en BoekResponse mocken
         LidResponse lidResponse = new LidResponse("lid123", "Jan", "Jansen", "jan.jansen@example.com");
         BoekResponse boekResponse = new BoekResponse("boek456", "Het avontuur", "Auteur A", "Fictie", null, 300);
-
-        // Zet volledige objecten door naar RecensieRequest
-        recensieRequest.setLid(lidResponse);   // Gebruik het volledige LidResponse object
-        recensieRequest.setBoek(boekResponse); // Gebruik het volledige BoekResponse object
 
         // Maak een RecensieResponse met volledige objecten
         recensieResponse = new RecensieResponse(1, "Top boek!", "Een heel interessant boek.", LocalDateTime.now(), boekResponse, lidResponse);
