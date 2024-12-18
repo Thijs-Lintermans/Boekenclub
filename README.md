@@ -70,7 +70,7 @@ Hieronder vind je de belangrijkste API-endpoints per service. Screenshots van Po
 
 ### 1. **Lid Service**
 - **GET /api/lid** - Haal alle leden op  
-  ![GET /api/lid](images/getLid.png)  
+  ![GET /api/lid](images/getLeden.png)  
 
 - **POST /api/lid** - Voeg een nieuw lid toe  
   ![POST /api/lid](images/postLid.png)  
