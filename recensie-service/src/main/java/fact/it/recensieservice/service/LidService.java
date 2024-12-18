@@ -25,7 +25,7 @@ public class LidService {
     // Fetch Lid data using WebClient and return LidResponse
     public LidResponse getLidById(String lidId) {
         return webClient.get()
-                .uri("http://" + lidServiceBaseUrl + "/api/lid/{id}", lidId) // Dynamisch baseUrl toevoegen
+                .uri("http://" + lidServiceBaseUrl + "/api/lid/", lidId) // Dynamisch baseUrl toevoegen
                 .retrieve()
                 .bodyToMono(LidResponse.class)
                 .block();
