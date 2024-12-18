@@ -36,11 +36,28 @@ Het project bestaat uit de volgende services:
 4. **Boek Service**  
    Beheert de informatie over de boeken in de club.
 
----
+### Serverconfiguratie
+- **Poort**: 8084
 
-## Service Routes
+### Logconfiguratie
+- **Root Logniveau**: INFO
+- **Spring Cloud Gateway Logniveau**: TRACE
+- **Reactor Netty Logniveau**: TRACE
 
-### Lid Service
+### Redis-configuratie
+- **Host**: localhost
+- **Poort**: 6379
+
+### OAuth2 Authenticatieconfiguratie
+- **Google OAuth2 Client ID**: ${GOOGLE_CLIENTID}
+- **Google OAuth2 Client Secret**: ${GOOGLE_CLIENTSECRET}
+- **Scope**: openid, profile, email
+- **Issuer URI**: https://accounts.google.com
+- **JWK Set URI**: https://www.googleapis.com/oauth2/v3/certs
+
+### Service Routes
+
+#### Lid Service
 - **GET** `/api/lid`  
   URI: `http://${LID_SERVICE_BASEURL:localhost:8080}/api/lid/all`
   
