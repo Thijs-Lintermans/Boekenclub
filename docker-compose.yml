@@ -38,8 +38,8 @@ services:
     ports:
       - 8080:8080
     environment:
-      MONGODB_PORT: 27017
-      MONGODB_HOST: mongo-lid
+      MONGO_DB_HOST: mongo-lid
+      MONGO_DB_PORT: 27017
 
   boek-service:
     depends_on:
@@ -48,8 +48,8 @@ services:
     ports:
       - 8082:8082
     environment:
-      MONGODB_PORT: 27018
-      MONGODB_HOST: mongo-boek
+      MONGO_DB_HOST: mongo-boek
+      MONGO_DB_PORT: 27017
 
   bespreking-service:
     depends_on:
