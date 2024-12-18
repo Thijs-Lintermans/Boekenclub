@@ -42,6 +42,8 @@ public class RecensieService {
     }
 
     public RecensieResponse createRecensie(RecensieRequest recensieRequest) {
+        System.out.println("RecensieRequest: " + recensieRequest);
+        System.out.println("Lid: " + recensieRequest.getLid());
         if (recensieRequest.getLid() == null) {
             throw new IllegalArgumentException("Lid is required and cannot be null.");
         }
