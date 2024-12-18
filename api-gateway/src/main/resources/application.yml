@@ -72,7 +72,7 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/boek/all
-            - name: CORS
+            - name: Cors
               args:
                 allowedOrigins: "http://localhost:4200"
                 allowedMethods: "GET, POST, PUT, DELETE"
@@ -106,7 +106,7 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/bespreking
-            - name: CORS
+            - name: Cors
               args:
                 allowedOrigins: "http://localhost:4200"
                 allowedMethods: "GET, POST, PUT, DELETE"
@@ -140,7 +140,7 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/recensies
-            - name: CORS
+            - name: Cors
               args:
                 allowedOrigins: "http://localhost:4200"
                 allowedMethods: "GET, POST, PUT, DELETE"
