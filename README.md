@@ -44,7 +44,7 @@ Het project bestaat uit de volgende services:
 - **Database**: MySQL, MongoDB
 - **Architectuur**: Microservices
 - **Tools**: Maven, Lombok, Postman (voor testen van APIs)
-- **Deployment**: Docker, Kubernetes
+- **Deployment**: Docker
 - **CI/CD**: GitHub Actions
 
 ---
