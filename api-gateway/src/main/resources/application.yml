@@ -57,28 +57,28 @@ spring:
         - id: boek-service-get
           uri: http://${BOEK_SERVICE_BASEURL:localhost:8082}
           predicates:
-            - Path=/boek
+            - Path=/api/boek
             - Method=GET
           filters:
             - SetPath=/api/boek/all
         - id: boek-service-post
           uri: http://${BOEK_SERVICE_BASEURL:localhost:8082}
           predicates:
-            - Path=/boek
+            - Path=/api/boek
             - Method=POST
           filters:
             - SetPath=/api/boek
         - id: boek-service-put
           uri: http://${BOEK_SERVICE_BASEURL:localhost:8082}
           predicates:
-            - Path=/boek/{id}
+            - Path=/api/boek/{id}
             - Method=PUT
           filters:
             - SetPath=/api/boek/{id}
         - id: boek-service-delete
           uri: http://${BOEK_SERVICE_BASEURL:localhost:8082}
           predicates:
-            - Path=/boek/{id}
+            - Path=/api/boek/{id}
             - Method=DELETE
           filters:
             - SetPath=/api/boek/{id}
@@ -86,28 +86,28 @@ spring:
         - id: bespreking-service-get
           uri: http://${BESPREKING_SERVICE_BASEURL:localhost:8083}
           predicates:
-            - Path=/bespreking
+            - Path=/api/bespreking
             - Method=GET
           filters:
             - SetPath=/api/bespreking
         - id: bespreking-service-post
           uri: http://${BESPREKING_SERVICE_BASEURL:localhost:8083}
           predicates:
-            - Path=/bespreking
+            - Path=/api/bespreking
             - Method=POST
           filters:
             - SetPath=/api/bespreking
         - id: bespreking-service-put
           uri: http://${BESPREKING_SERVICE_BASEURL:localhost:8083}
           predicates:
-            - Path=/bespreking/{id}
+            - Path=/api/bespreking/{id}
             - Method=PUT
           filters:
             - SetPath=/api/bespreking/{id}
         - id: bespreking-service-delete
           uri: http://${BESPREKING_SERVICE_BASEURL:localhost:8083}
           predicates:
-            - Path=/besprekingen/{id}
+            - Path=/api/besprekingen/{id}
             - Method=DELETE
           filters:
             - SetPath=/api/bespreking/{id}
@@ -115,35 +115,35 @@ spring:
         - id: recensie-service-get
           uri: http://${RECENSIE_SERVICE_BASEURL:localhost:8081}
           predicates:
-            - Path=/recensies
+            - Path=/api/recensies
             - Method=GET
           filters:
             - SetPath=/api/recensies
         - id: recensie-service-get-by-lid
           uri: http://${RECENSIE_SERVICE_BASEURL:localhost:8081}
           predicates:
-            - Path=/recensies/{lidId}
+            - Path=/api/recensies/{lidId}
             - Method=GET
           filters:
             - SetPath=/api/recensies/{lidId}
         - id: recensie-service-post
           uri: http://${RECENSIE_SERVICE_BASEURL:localhost:8081}
           predicates:
-            - Path=/recensies
+            - Path=/api/recensies
             - Method=POST
           filters:
             - SetPath=/api/recensies
         - id: recensie-service-put
           uri: http://${RECENSIE_SERVICE_BASEURL:localhost:8081}
           predicates:
-            - Path=/recensies/{id}
+            - Path=/api/recensies/{id}
             - Method=PUT
           filters:
             - SetPath=/api/recensies/{id}
         - id: recensie-service-delete
           uri: http://${RECENSIE_SERVICE_BASEURL:localhost:8081}
           predicates:
-            - Path=/recensies/{id}
+            - Path=/api/recensies/{id}
             - Method=DELETE
           filters:
             - SetPath=/api/recensies/{id}
