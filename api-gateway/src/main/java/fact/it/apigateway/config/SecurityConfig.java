@@ -17,11 +17,7 @@ public class SecurityConfig {
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity serverHttpSecurity) {
         serverHttpSecurity
                 .authorizeExchange(exchange ->
-                        exchange.pathMatchers(HttpMethod.GET,"/api/recensies/{lidId}").permitAll()
-                                .pathMatchers(HttpMethod.POST, "/api/recensies").permitAll()
-                                .pathMatchers(HttpMethod.PUT, "/api/recensies/{id}").permitAll()
-                                .pathMatchers(HttpMethod.DELETE, "/api/recensies/{id}").permitAll()
-
+                        exchange.pathMatchers(HttpMethod.GET,"/api/recensies").permitAll()
                                 .pathMatchers(HttpMethod.GET, "/api/boek").permitAll()
                                 .pathMatchers(HttpMethod.GET, "/api/bespreking").permitAll()
 
