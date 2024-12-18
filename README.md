@@ -38,6 +38,65 @@ Het project bestaat uit de volgende services:
 
 ---
 
+## Service Routes
+
+### Lid Service
+- **GET** `/api/lid`  
+  URI: `http://${LID_SERVICE_BASEURL:localhost:8080}/api/lid/all`
+  
+- **POST** `/api/lid`  
+  URI: `http://${LID_SERVICE_BASEURL:localhost:8080}/api/lid`
+  
+- **PUT** `/api/lid/{id}`  
+  URI: `http://${LID_SERVICE_BASEURL:localhost:8080}/api/lid/{id}`
+  
+- **DELETE** `/api/lid/{id}`  
+  URI: `http://${LID_SERVICE_BASEURL:localhost:8080}/api/lid/{id}`
+
+### Boek Service
+- **GET** `/api/boek`  
+  URI: `http://${BOEK_SERVICE_BASEURL:localhost:8082}/api/boek/all`
+  
+- **POST** `/api/boek`  
+  URI: `http://${BOEK_SERVICE_BASEURL:localhost:8082}/api/boek`
+  
+- **PUT** `/api/boek/{id}`  
+  URI: `http://${BOEK_SERVICE_BASEURL:localhost:8082}/api/boek/{id}`
+  
+- **DELETE** `/api/boek/{id}`  
+  URI: `http://${BOEK_SERVICE_BASEURL:localhost:8082}/api/boek/{id}`
+
+### Bespreking Service
+- **GET** `/api/bespreking`  
+  URI: `http://${BESPREKING_SERVICE_BASEURL:localhost:8083}/api/bespreking`
+  
+- **POST** `/api/bespreking`  
+  URI: `http://${BESPREKING_SERVICE_BASEURL:localhost:8083}/api/bespreking`
+  
+- **PUT** `/api/bespreking/{id}`  
+  URI: `http://${BESPREKING_SERVICE_BASEURL:localhost:8083}/api/bespreking/{id}`
+  
+- **DELETE** `/api/besprekingen/{id}`  
+  URI: `http://${BESPREKING_SERVICE_BASEURL:localhost:8083}/api/bespreking/{id}`
+
+### Recensie Service
+- **GET** `/api/recensies`  
+  URI: `http://${RECENSIE_SERVICE_BASEURL:localhost:8081}/api/recensies`
+  
+- **GET** `/api/recensies/{lidId}`  
+  URI: `http://${RECENSIE_SERVICE_BASEURL:localhost:8081}/api/recensies/{lidId}`
+  
+- **POST** `/api/recensies`  
+  URI: `http://${RECENSIE_SERVICE_BASEURL:localhost:8081}/api/recensies`
+  
+- **PUT** `/api/recensies/{id}`  
+  URI: `http://${RECENSIE_SERVICE_BASEURL:localhost:8081}/api/recensies/{id}`
+  
+- **DELETE** `/api/recensies/{id}`  
+  URI: `http://${RECENSIE_SERVICE_BASEURL:localhost:8081}/api/recensies/{id}`
+
+---
+
 ## 🛠️ Technologieën
 
 - **Backend**: Java Spring Boot
