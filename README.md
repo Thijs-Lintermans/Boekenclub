@@ -70,64 +70,64 @@ Hieronder vind je de belangrijkste API-endpoints per service. Screenshots van Po
 
 ### 1. **Lid Service**
 - **GET /api/lid** - Haal alle leden op  
-  ![GET /api/lid](images/get_api_lid.png)  
+  ![GET /api/lid](images/getLid.png)  
 
 - **POST /api/lid** - Voeg een nieuw lid toe  
-  ![POST /api/lid](images/post_api_lid.png)  
+  ![POST /api/lid](images/postLid.png)  
 
 - **PUT /api/lid/{id}** - Werk informatie van een lid bij  
-  ![PUT /api/lid/{id}](images/put_api_lid.png)  
+  ![PUT /api/lid/{id}](images/putLid.png)  
 
 - **DELETE /api/lid/{id}** - Verwijder een lid  
-  ![DELETE /api/lid/{id}](images/delete_api_lid.png)  
+  ![DELETE /api/lid/{id}](images/deleteLid.png)  
 
 ---
 
 ### 2. **Bespreking Service**
 - **GET /api/bespreking** - Haal alle besprekingen op  
-  ![GET /api/bespreking](images/get_api_bespreking.png)  
+  ![GET /api/bespreking](images/getBespreking.png)  
 
 - **POST /api/bespreking** - Maak een nieuwe bespreking  
-  ![POST /api/bespreking](images/post_api_bespreking.png)  
+  ![POST /api/bespreking](images/postBespreking.png)  
 
 - **PUT /api/bespreking/{id}** - Update een bespreking  
-  ![PUT /api/bespreking/{id}](images/put_api_bespreking.png)  
+  ![PUT /api/bespreking/{id}](images/putBespreking.png)  
 
 - **DELETE /api/bespreking/{id}** - Verwijder een bespreking  
-  ![DELETE /api/bespreking/{id}](images/delete_api_bespreking.png)  
+  ![DELETE /api/bespreking/{id}](images/deleteBespreking.png)  
 
 ---
 
 ### 3. **Recensie Service**
 - **GET /api/recensies** - Haal alle recensies op  
-  ![GET /api/recensie](images/get_api_recensie.png)
+  ![GET /api/recensie](images/getRecensie.png)
 
 - **GET /api/recensies/{lidID}** - haal recensie op via lidID
-  ![GET /api/recensie](images/get_api_recensie.png)
+  ![GET /api/recensie](images/getByLidIdRecensie.png)
 
 - **POST /api/recensies** - Voeg een nieuwe recensie toe  
-  ![POST /api/recensie](images/post_api_recensie.png)  
+  ![POST /api/recensie](images/postRecensies.png)  
 
 - **PUT /api/recensies/{id}** - Update een recensie  
-  ![PUT /api/recensie/{id}](images/put_api_recensie.png)  
+  ![PUT /api/recensie/{id}](images/putRecensie.png)  
 
 - **DELETE /api/recensies/{id}** - Verwijder een recensie  
-  ![DELETE /api/recensie/{id}](images/delete_api_recensie.png)  
+  ![DELETE /api/recensie/{id}](images/deleteRecensie.png)  
 
 ---
 
 ### 4. **Boek Service**
 - **GET /api/boek** - Haal alle boeken op  
-  ![GET /api/boek](images/get_api_boek.png)  
+  ![GET /api/boek](images/getBoek.png)  
 
 - **POST /api/boek** - Voeg een nieuw boek toe  
-  ![POST /api/boek](images/post_api_boek.png)  
+  ![POST /api/boek](images/postBoek.png)  
 
 - **PUT /api/boek/{id}** - Update een boek  
-  ![PUT /api/boek/{id}](images/put_api_boek.png)  
+  ![PUT /api/boek/{id}](images/putBoek.png)  
 
 - **DELETE /api/boek/{id}** - Verwijder een boek  
-  ![DELETE /api/boek/{id}](images/delete_api_boek.png)  
+  ![DELETE /api/boek/{id}](images/deleteBoek.png)  
 
 ---
 
