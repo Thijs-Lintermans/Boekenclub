@@ -220,7 +220,7 @@ Hieronder vind je de belangrijkste API-endpoints per service. Screenshots van Po
 
 ## 📖 Conclusie
 
-Dit project biedt een schaalbare en robuuste oplossing voor een boekenclubplatform door het gebruik van **microservices**, **containerisatie** (Docker, Kubernetes), en moderne ontwikkeltools. Het platform is eenvoudig uitbreidbaar en maakt een duidelijke scheiding tussen services mogelijk.
+Dit project biedt een schaalbare en robuuste oplossing voor een boekenclubplatform door het gebruik van **microservices**, **containerisatie** (Docker), en moderne ontwikkeltools. Het platform is eenvoudig uitbreidbaar en maakt een duidelijke scheiding tussen services mogelijk.
 
 ---
 
