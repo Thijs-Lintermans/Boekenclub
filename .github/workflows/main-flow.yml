@@ -154,7 +154,7 @@ jobs:
         working-directory: ./frontBoekenclub
 
       - name: Build the Angular app
-        run: npm run build -- --prod
+        run: npm run build -- --configuration production
         working-directory: ./frontBoekenclub
 
       - name: Docker login
