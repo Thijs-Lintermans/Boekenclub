@@ -151,17 +151,17 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: ./frontboekenclub
+        working-directory: ./frontend-boekenclub
 
       - name: Build the Angular app
         run: npm run build -- --configuration production
-        working-directory: ./frontboekenclub
+        working-directory: ./frontend-boekenclub
 
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Docker Build
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/frontboekenclub:latest ./frontboekenclub
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend-boekenclub:latest ./frontend-boekenclub
 
       - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/frontboekenclub:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/frontend-boekenclub:latest

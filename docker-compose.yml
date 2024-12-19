@@ -106,7 +106,7 @@ services:
       BESPREKING_SERVICE_BASEURL: bespreking-service:8083
   frontend:
     build:
-      context: ./frontboekenclub
+      context: ./frontend-boekenclub
       dockerfile: Dockerfile
     ports:
       - 4200:4200

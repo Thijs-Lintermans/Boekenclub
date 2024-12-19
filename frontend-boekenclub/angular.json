@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "frontBoekenclubd": {
+    "frontend-boekenclub": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/front-boekenclubd",
+            "outputPath": "dist/frontend-boekenclub",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "frontBoekenclubd:build:production"
+              "buildTarget": "frontend-boekenclub:build:production"
             },
             "development": {
-              "buildTarget": "frontBoekenclubd:build:development"
+              "buildTarget": "frontend-boekenclub:build:development"
             }
           },
           "defaultConfiguration": "development"
