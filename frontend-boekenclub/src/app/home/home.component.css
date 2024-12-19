@@ -1,0 +1,95 @@
+/* General styling for the introductory section */
+.intro-section {
+    text-align: center;
+    padding: 40px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+.intro-section h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.intro-section p {
+    font-size: 1.2em;
+    color: #555;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+
+/* General styles for sections */
+.section {
+    margin-bottom: 40px; /* Add space between sections */
+}
+
+/* Styling for h2 headings */
+h2 {
+    font-size: 1.75em;
+    margin-bottom: 10px; /* Space between title and list */
+    color: #2c3e50;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Remove default list styling */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Styling the container for list items */
+.list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive grid layout */
+    gap: 20px;
+    padding: 0 15px;
+}
+
+/* Individual list items styling */
+.list-item {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+/* Hover effect on list items */
+.list-item:hover {
+    background-color: #f1f1f1;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* Styling the strong tags inside list items */
+strong {
+    color: #2980b9;
+    font-weight: bold;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .list-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+}

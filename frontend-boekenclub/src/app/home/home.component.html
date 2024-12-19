@@ -1,0 +1,38 @@
+<div class="intro-section">
+    <h1>Welkom bij ons Boekenclub Project!</h1>
+    <p>Dit project is een platform voor boekenliefhebbers om samen te komen, boeken te bespreken en recensies te delen. Het is opgebouwd uit een moderne microservice-architectuur met vier onafhankelijke services.</p>
+</div>
+
+<div class="section">
+    <h2>Besprekingen</h2>
+<ul class="list-container">
+    @for (bespreking of besprekingen; track $index) {
+        <li class="list-item">
+            <strong> {{ bespreking.titelBespreking }}</strong> - {{ bespreking.datum }} - {{ bespreking.locatie }} - {{ bespreking.omschrijving }}
+          </li>
+    }
+</ul>
+</div>
+
+<div class="section">
+    <h2>Boeken</h2>
+<ul class="list-container">
+    @for (boek of boeken; track $index) {
+        <li class="list-item">
+            <strong>{{ boek.titel }}</strong> - {{ boek.auteur }}
+          </li>
+    }
+</ul>
+</div>
+
+<div class="section">
+    
+<h2>Recensies</h2>
+<ul class="list-container">
+    @for (recensie of recensies; track $index) {
+        <li class="list-item">
+            <strong>{{ recensie.titelRecensie }}</strong> - {{ recensie.description }}
+          </li>
+    }
+</ul>
+</div>

@@ -137,3 +137,31 @@ jobs:
       - name: Upload container to Docker Hub with Push
         run: docker push ${{ secrets.DOCKER_USERNAME }}/api-gateway:latest
 
+  frontend:
+    runs-on: ubuntu-latest
+    name: Build, test, deliver Angular frontend container
+    steps:
+      -  name: Check out repository
+         uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./frontend-boekenclub
+
+      - name: Build the Angular app
+        run: npm run build -- --configuration production
+        working-directory: ./frontend-boekenclub
+
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Docker Build
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend-boekenclub:latest ./frontend-boekenclub
+
+      - name: Upload container to Docker Hub with Push
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/frontend-boekenclub:latest

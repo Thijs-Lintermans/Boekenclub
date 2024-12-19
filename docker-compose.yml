@@ -104,6 +104,15 @@ services:
       LID_SERVICE_BASEURL: lid-service:8080
       RECENSIE_SERVICE_BASEURL: recensie-service:8081
       BESPREKING_SERVICE_BASEURL: bespreking-service:8083
+  frontend:
+    build:
+      context: ./frontend-boekenclub
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200
+    depends_on:
+      - api-gateway
+
 
 
 volumes:
