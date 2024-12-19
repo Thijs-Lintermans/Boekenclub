@@ -74,15 +74,15 @@ spring:
             - SetPath=/api/boek/all
             - name: AddRequestHeader
               args:
-                name: "Access-Control-Allow-Origin"
+                name: Access-Control-Allow-Origin
                 value: "http://localhost:4200"
             - name: AddRequestHeader
               args:
-                name: "Access-Control-Allow-Methods"
+                name: Access-Control-Allow-Methods
                 value: "GET, POST, PUT, DELETE"
             - name: AddRequestHeader
               args:
-                name: "Access-Control-Allow-Headers"
+                name: Access-Control-Allow-Headers
                 value: "Content-Type, Authorization"
         - id: boek-service-post
           uri: http://${BOEK_SERVICE_BASEURL:localhost:8082}
