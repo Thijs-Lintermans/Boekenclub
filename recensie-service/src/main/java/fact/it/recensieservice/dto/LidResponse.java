@@ -18,24 +18,40 @@ public class LidResponse {
         this.email = email;
     }
 
-    // Getters
+    // Getters and Setters
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getVoornaam() {
         return voornaam;
     }
 
+    public void setVoornaam(String voornaam) {
+        this.voornaam = voornaam;
+    }
+
     public String getAchternaam() {
         return achternaam;
+    }
+
+    public void setAchternaam(String achternaam) {
+        this.achternaam = achternaam;
     }
 
     public String getEmail() {
         return email;
     }
 
-    // Builder pattern (using Lombok would automatically generate this)
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    // Builder pattern
     public static class Builder {
         private String id;
         private String voornaam;

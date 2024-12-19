@@ -81,19 +81,51 @@ public class RecensieServiceUnitTests {
     }
 
     @Test
-    public void testGetRecensiesByLidId() {
+    void testGetRecensiesByLidId() {
         // Arrange
-        String lidId = "lid123";
-        when(recensieRepository.findByLidId(lidId)).thenReturn(Arrays.asList(recensie));
+        String lidId = "123";
+        Recensie recensie1 = new Recensie("Great book!", "Loved it!", LocalDateTime.now(), "book123", lidId);
+        Recensie recensie2 = new Recensie("Interesting read.", "Very engaging.", LocalDateTime.now(), "book456", lidId);
+        List<Recensie> recensies = Arrays.asList(recensie1, recensie2);
+
+        // Mock the repository to return the recensies list
+        when(recensieRepository.findByLidId(lidId)).thenReturn(recensies);
+
+        // Create expected RecensieResponse objects
+        RecensieResponse expectedResponse1 = new RecensieResponse.Builder()
+                .id(1)
+                .titelRecensie("Great book!")
+                .description("Loved it!")
+                .datumTijd(recensie1.getDatumTijd())
+                .boek(new BoekResponse("book123", "Book Title", "Author", "Genre", LocalDateTime.now().toLocalDate(), 300))
+                .lid(new LidResponse("123", "John", "Doe", "john.doe@example.com"))
+                .build();
+
+        RecensieResponse expectedResponse2 = new RecensieResponse.Builder()
+                .id(2)
+                .titelRecensie("Interesting read.")
+                .description("Very engaging.")
+                .datumTijd(recensie2.getDatumTijd())
+                .boek(new BoekResponse("book456", "Another Book", "Author", "Genre", LocalDateTime.now().toLocalDate(), 250))
+                .lid(new LidResponse("123", "John", "Doe", "john.doe@example.com"))
+                .build();
+
+        List<RecensieResponse> expectedResponses = Arrays.asList(expectedResponse1, expectedResponse2);
 
         // Act
         List<RecensieResponse> result = recensieService.getRecensiesByLidId(lidId);
 
         // Assert
-        assertEquals(1, result.size());
-        assertEquals("lid123", result.get(0).getLid().getId()); // Lid is nu goed geïnitialiseerd
-        verify(recensieRepository, times(1)).findByLidId(lidId);
+        assertNotNull(result);
+        assertEquals(2, result.size());
+        assertEquals(expectedResponses.get(0).getTitelRecensie(), result.get(0).getTitelRecensie());
+        assertEquals(expectedResponses.get(1).getTitelRecensie(), result.get(1).getTitelRecensie());
+        assertEquals(expectedResponses.get(0).getDescription(), result.get(0).getDescription());
+        assertEquals(expectedResponses.get(1).getDescription(), result.get(1).getDescription());
     }
+
+
+
 
     @Test
     public void testCreateRecensie() {
