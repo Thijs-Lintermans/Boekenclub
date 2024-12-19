@@ -129,7 +129,7 @@ Het project bestaat uit de volgende services:
 
 Onderstaande afbeelding geeft de deployment architectuur van het Boekenclub Project weer. Elke service wordt als container gedraaid en beheerd door Kubernetes, waarbij zowel MongoDB als MySQL gebruikt worden voor datastorage.
 
-![Deployment Architectuur](https://www.youtube.com/watch?v=AJLoxXWS45o)
+![Deployment Architectuur](images/deployment.png)
 
 ### Toelichting:
 - **API Gateway**: Beheert het inkomende verkeer en routeert verzoeken naar de juiste microservices.
@@ -225,7 +225,8 @@ Dit project biedt een schaalbare en robuuste oplossing voor een boekenclubplatfo
 ---
 
 ### 💻 **Screenshots en Demo**
-- Voeg hier nog screenshots of een demo-video toe indien beschikbaar.
+- hier een link van het demo filmpje
+  ![demo link](https://www.youtube.com/watch?v=AJLoxXWS45o )
 
 ---
 
