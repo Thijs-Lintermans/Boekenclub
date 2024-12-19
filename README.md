@@ -226,7 +226,7 @@ Dit project biedt een schaalbare en robuuste oplossing voor een boekenclubplatfo
 
 ### 💻 **Screenshots en Demo**
 - hier een link van het demo filmpje
-  ![demo link](https://www.youtube.com/watch?v=AJLoxXWS45o )
+  [demo link](https://www.youtube.com/watch?v=AJLoxXWS45o )
 
 ---
 
