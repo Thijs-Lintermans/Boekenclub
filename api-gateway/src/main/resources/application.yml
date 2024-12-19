@@ -72,15 +72,15 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/boek/all
-            - name: AddRequestHeader
+            - name: AddResponseHeader
               args:
                 name: Access-Control-Allow-Origin
                 value: "http://localhost:4200"
-            - name: AddRequestHeader
+            - name: AddResponseHeader
               args:
                 name: Access-Control-Allow-Methods
                 value: "GET, POST, PUT, DELETE"
-            - name: AddRequestHeader
+            - name: AddResponseHeader
               args:
                 name: Access-Control-Allow-Headers
                 value: "Content-Type, Authorization"
@@ -115,15 +115,15 @@ spring:
             - SetPath=/api/bespreking
             - name: AddRequestHeader
               args:
-                name: "Access-Control-Allow-Origin"
+                name: Access-Control-Allow-Origin
                 value: "http://localhost:4200"
-            - name: AddRequestHeader
+            - name: AddResponseHeader
               args:
-                name: "Access-Control-Allow-Methods"
+                name: Access-Control-Allow-Methods
                 value: "GET, POST, PUT, DELETE"
-            - name: AddRequestHeader
+            - name: AddResponseHeader
               args:
-                name: "Access-Control-Allow-Headers"
+                name: Access-Control-Allow-Headers
                 value: "Content-Type, Authorization"
         - id: bespreking-service-post
           uri: http://${BESPREKING_SERVICE_BASEURL:localhost:8083}
@@ -154,17 +154,17 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/recensies
-            - name: AddRequestHeader
+            - name: AddResponseHeader
               args:
-                name: "Access-Control-Allow-Origin"
+                name: Access-Control-Allow-Origin
                 value: "http://localhost:4200"
-            - name: AddRequestHeader
+            - name: AddResponseHeader
               args:
-                name: "Access-Control-Allow-Methods"
+                name: Access-Control-Allow-Methods
                 value: "GET, POST, PUT, DELETE"
-            - name: AddRequestHeader
+            - name: AddResponseHeader
               args:
-                name: "Access-Control-Allow-Headers"
+                name: Access-Control-Allow-Headers
                 value: "Content-Type, Authorization"
         - id: recensie-service-get-by-lid
           uri: http://${RECENSIE_SERVICE_BASEURL:localhost:8081}
