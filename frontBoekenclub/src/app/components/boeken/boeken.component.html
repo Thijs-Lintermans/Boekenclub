@@ -1,6 +1,8 @@
 <h2>Boeken</h2>
 <ul>
-  <li *ngFor="let book of books">
-    {{ book.titel }} - {{ book.auteur }}
-  </li>
+    @for (boek of boeken; track $index) {
+        <li>
+            {{ boek.titel }} - {{ boek.auteur }}
+          </li>
+    }
 </ul>

@@ -113,7 +113,7 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/bespreking
-            - name: AddRequestHeader
+            - name: AddResponseHeader
               args:
                 name: Access-Control-Allow-Origin
                 value: "http://localhost:4200"
